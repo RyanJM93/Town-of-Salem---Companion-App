@@ -390,7 +390,7 @@ public class Window {
 		bodyguardIcon.setEnabled(false);
 		bodyguardIcon.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mousePressed(MouseEvent arg0) {
+			public void mousePressed(MouseEvent e) {
 				if(bodyguardIcon.isEnabled()){
 					rolesTabbedPane.setSelectedIndex(0);
 					disableRole(0);
@@ -1928,7 +1928,10 @@ public class Window {
 			public void itemStateChanged(ItemEvent ie) {
 				//String numPlayersString = numPlayersComboBox.getSelectedItem().toString();
 				//int numPlayers = Integer.parseInt(numPlayersString); 
-				setupGameMode(gameModeComboBox.getSelectedItem().toString());
+				String currentGameMode = gameModeComboBox.getSelectedItem().toString();
+				if(currentGameMode.equals("All Any") || currentGameMode.equals("Classic") || currentGameMode.equals("Custom") || currentGameMode.equals("Vigilantics")){
+					setupGameMode(currentGameMode);
+				}
 				calculateEnoughRoles();
 			}
 		});
@@ -3959,6 +3962,7 @@ public class Window {
 				gameModeDescriptionText.setText(description);
 				String numPlayers = prop.getProperty("numPlayers");
 				numPlayersComboBox.setSelectedItem(numPlayers);
+				setupSavedRoles(Integer.parseInt(numPlayersComboBox.getSelectedItem().toString()), mode);
 		 
 			} catch (IOException ex) {
 				ex.printStackTrace();
@@ -3974,6 +3978,119 @@ public class Window {
 		}
 	}
 	
+	void setupSavedRoles(int numPlayers, String mode) {
+		disableAllRoles();
+		Properties prop = new Properties();
+		InputStream input = null;
+		try {
+			input = new FileInputStream(mode + ".properties");
+			prop.load(input);
+			if(prop.getProperty("bodyguard").equals("enabled")){
+				enableRole(0, 1);
+			}
+			if(prop.getProperty("doctor").equals("enabled")){
+				enableRole(1, 1);
+			}
+			if(prop.getProperty("escort").equals("enabled")){
+				enableRole(2, 1);
+			}
+			if(prop.getProperty("investigator").equals("enabled")){
+				enableRole(3, 1);
+			}
+			if(prop.getProperty("jailor").equals("enabled")){
+				enableRole(4, 1);
+			}
+			if(prop.getProperty("lookout").equals("enabled")){
+				enableRole(5, 1);
+			}
+			if(prop.getProperty("mayor").equals("enabled")){
+				enableRole(6, 1);
+			}
+			if(prop.getProperty("medium").equals("enabled")){
+				enableRole(7, 1);
+			}
+			if(prop.getProperty("retributionist").equals("enabled")){
+				enableRole(8, 1);
+			}
+			if(prop.getProperty("sheriff").equals("enabled")){
+				enableRole(9, 1);
+			}
+			if(prop.getProperty("spy").equals("enabled")){
+				enableRole(10, 1);
+			}
+			if(prop.getProperty("transporter").equals("enabled")){
+				enableRole(11, 1);
+			}
+			if(prop.getProperty("veteran").equals("enabled")){
+				enableRole(12, 1);
+			}
+			if(prop.getProperty("vigilante").equals("enabled")){
+				enableRole(13, 1);
+			}
+
+			if(prop.getProperty("blackmailer").equals("enabled")){
+				enableRole(14, 1);
+			}
+			if(prop.getProperty("consigliere").equals("enabled")){
+				enableRole(15, 1);
+			}
+			if(prop.getProperty("consort").equals("enabled")){
+				enableRole(16, 1);
+			}
+			if(prop.getProperty("disguiser").equals("enabled")){
+				enableRole(17, 1);
+			}
+			if(prop.getProperty("framer").equals("enabled")){
+				enableRole(18, 1);
+			}
+			if(prop.getProperty("godfather").equals("enabled")){
+				enableRole(19, 1);
+			}
+			if(prop.getProperty("janitor").equals("enabled")){
+				enableRole(20, 1);
+			}
+			if(prop.getProperty("mafioso").equals("enabled")){
+				enableRole(21, 1);
+			}
+
+			if(prop.getProperty("amnesiac").equals("enabled")){
+				enableRole(22, 1);
+			}
+			if(prop.getProperty("arsonist").equals("enabled")){
+				enableRole(23, 1);
+			}
+			if(prop.getProperty("executioner").equals("enabled")){
+				enableRole(24, 1);
+			}
+			if(prop.getProperty("jester").equals("enabled")){
+				enableRole(25, 1);
+			}
+			if(prop.getProperty("serialKiller").equals("enabled")){
+				enableRole(26, 1);
+			}
+			if(prop.getProperty("survivor").equals("enabled")){
+				enableRole(27, 1);
+			}
+			if(prop.getProperty("witch").equals("enabled")){
+				enableRole(28, 1);
+			}
+			if(prop.getProperty("werewolf").equals("enabled")){
+				enableRole(29, 1);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+	}
+
 	void setupAllAnyRoles(int numPlayers){
 		disableAllRoles();
 		Boolean jailorFlag = false;
@@ -4424,7 +4541,7 @@ public class Window {
 			if(consigliereIcon.isEnabled()){
 				prop.setProperty("consigliere", "enabled");
 			} else {
-				prop.setProperty("bodyguard", "disabled");
+				prop.setProperty("consigliere", "disabled");
 			}
 			
 			if(consortIcon.isEnabled()){
