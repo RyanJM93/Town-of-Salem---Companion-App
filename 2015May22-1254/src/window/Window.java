@@ -112,6 +112,79 @@ public class Window {
 	private static final int NUM_ROLES = 30;
 	private static final String notEnoughRoles = "You don't have enough roles selected! Add some roles or decrease the number of players!";
 	private static final String tooManyRoles = "You have too many roles selected! Remove some roles or increase the number of players!";
+	private static final String[] allNightRoles = {
+		"Medium",
+		"Amnesiac",
+		"Transporter",
+		"Jester",
+		"Witch",
+		"Survivor",
+		"Bodyguard",
+		"Veteran",
+		"Escort",
+		"Consort",
+		"Doctor",
+		"Jailor",
+		"Godfather",
+		"Mafioso",
+		"Disguiser",
+		"Janitor",
+		"Framer",
+		"Blackmailer",
+		"Consigliere",
+		"Spy",
+		"Serial Killer",
+		"Arsonist",
+		"Vigilante",
+		"Werewolf",
+		"Investigator",
+		"Sheriff",
+		"Retributionist",
+		"Lookout"
+	};
+	private static final String[] allDayRoles = {
+		"Executioner",
+		"Mayor"
+	};
+	
+	Integer mediumAmount = 0;
+	Integer amnesiacAmount = 0;
+	Integer transporterAmount = 0;
+	Integer jesterAmount = 0;
+	Integer witchAmount = 0;
+	Integer survivorAmount = 0;
+	Integer bodyguardAmount = 0;
+	Integer veteranAmount = 0;
+
+	Integer escortAmount = 0;
+	Integer consortAmount = 0;
+	Integer doctorAmount = 0;
+	Integer jailorAmount = 0;
+
+	Integer godfatherAmount = 0;
+	Integer mafiosoAmount = 0;
+	Integer disguiserAmount = 0;
+	Integer janitorAmount = 0;
+	Integer framerAmount = 0;
+	Integer blackmailerAmount = 0;
+	Integer consigliereAmount = 0;
+	Integer spyAmount = 0;
+
+	Integer serialKillerAmount = 0;
+	Integer arsonistAmount = 0;
+	Integer vigilanteAmount = 0;
+	Integer werewolfAmount = 0;
+
+	Integer investigatorAmount = 0;
+	Integer sheriffAmount = 0;
+	Integer retributionistAmount = 0;
+	Integer lookoutAmount = 0;
+
+	Integer executionerAmount = 0;
+	Integer mayorAmount = 0;
+	
+	Integer numActiveNightRoles = 0;
+	Integer numActiveDayRoles = 0;
 	Boolean maxThree = false;
 	
 	private JFrame frame;
@@ -135,6 +208,8 @@ public class Window {
 	JLabel roleActionIcon = new JLabel("");
 	JTextPane roleInstructionText = new JTextPane();
 	int roleSequenceNumber = 0;
+	int nightRoleNumber = 0;
+	int dayRoleNumber = 0;
 
 	JPanel mainViewportPanel = new JPanel();
 	JLabel roleInfoSheet = new JLabel("");	
@@ -3089,6 +3164,13 @@ public class Window {
 					iconTabbedPane.addTab("Town", null, townIconPanel, null);
 					iconTabbedPane.addTab("Mafia", null, mafiaIconPanel, null);
 					iconTabbedPane.addTab("Neutral", null, neutralIconPanel, null);
+					mainViewportPanel.setBackground(dayColor);
+					inSessionPanel.setBackground(dayColor);
+					inSessionDataPanel.setBackground(dayColor);
+					headerPanel.setBackground(dayColor);
+					rolesPanel.setBackground(dayColor);
+					iconPanel.setBackground(dayColor);
+					activeRolesPanel.setBackground(dayColor);
             	}
 			}
 		});
@@ -3191,10 +3273,11 @@ public class Window {
 		inSessionDataPanel.add(roleActionLabel);
 		nightPhaseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				nightRoleNumber = 0;
 				isNight = true;
 				nextRoleButton.setEnabled(true);
 				nextRoleButton.setForeground(new Color(139, 69, 19));
-				nextRole(roleSequenceNumber);
+				nextRole(nightRoleNumber, roleSequenceNumber);
 				nextRoleButton.requestFocus();
 				nightPhaseButton.setVisible(false);
 				nightPhaseButton.setEnabled(false);
@@ -3262,6 +3345,8 @@ public class Window {
 				nightRoles = tempNightRoles.toArray();
 				nightRolesArray = new Object[nightRoles.length][1];
 				
+				numActiveNightRoles = nightRoles.length;
+				
 				for(int i=0; i < nightRoles.length; i++){
 					nightRolesArray[i] = new Object[]{(Object)nightRoles[i]};
 					// Setup Roles
@@ -3325,20 +3410,32 @@ public class Window {
 						            	}
 										tempRole.setEnabled(false);
 										
-
-										tempNightRoles.remove("Medium");
-										nightRoles = tempNightRoles.toArray();
-										
-										nightActionSequence = nightRoles;
+										if(mediumAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Medium");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											mediumAmount--;
+										}  else {
+											mediumAmount--;
+										}
 										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumIcon.png")));
 										tempRole.setEnabled(true);
-										
-										tempNightRoles.add(0, "Medium");
-										nightRoles = tempNightRoles.toArray();
-										
-										nightActionSequence = nightRoles;
+										if(mediumAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Medium");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											mediumAmount++;
+										} else if(mediumAmount < Integer.parseInt(mediumCount.getText())){
+											mediumAmount++;
+										}
 									}
 								}
 							});
@@ -3404,9 +3501,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(amnesiacAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Amnesiac");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											amnesiacAmount--;
+										}  else {
+											amnesiacAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/amnesiacIcon.png")));
 										tempRole.setEnabled(true);
+										if(amnesiacAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Amnesiac");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											amnesiacAmount++;
+										} else if(amnesiacAmount < Integer.parseInt(amnesiacCount.getText())){
+											amnesiacAmount++;
+										}
 									}
 								}
 							});
@@ -3472,9 +3593,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(transporterAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Transporter");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											transporterAmount--;
+										}  else {
+											transporterAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/transporterIcon.png")));
 										tempRole.setEnabled(true);
+										if(transporterAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Transporter");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											transporterAmount++;
+										} else if(transporterAmount < Integer.parseInt(transporterCount.getText())){
+											transporterAmount++;
+										}
 									}
 								}
 							});
@@ -3540,9 +3685,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(jesterAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Jester");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											jesterAmount--;
+										}  else {
+											jesterAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterIcon.png")));
 										tempRole.setEnabled(true);
+										if(jesterAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Jester");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											jesterAmount++;
+										} else if(jesterAmount < Integer.parseInt(jesterCount.getText())){
+											jesterAmount++;
+										}
 									}
 								}
 							});
@@ -3608,9 +3777,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(witchAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Witch");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											witchAmount--;
+										}  else {
+											witchAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/witchIcon.png")));
 										tempRole.setEnabled(true);
+										if(witchAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Witch");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											witchAmount++;
+										} else if(witchAmount < Integer.parseInt(witchCount.getText())){
+											witchAmount++;
+										}
 									}
 								}
 							});
@@ -3676,9 +3869,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(survivorAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Survivor");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											survivorAmount--;
+										}  else {
+											survivorAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/survivorIcon.png")));
 										tempRole.setEnabled(true);
+										if(survivorAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Survivor");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											survivorAmount++;
+										} else if(survivorAmount < Integer.parseInt(survivorCount.getText())){
+											survivorAmount++;
+										}
 									}
 								}
 							});
@@ -3744,9 +3961,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(bodyguardAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Bodyguard");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											bodyguardAmount--;
+										}  else {
+											bodyguardAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/bodyguardIcon.png")));
 										tempRole.setEnabled(true);
+										if(bodyguardAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Bodyguard");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											bodyguardAmount++;
+										} else if(bodyguardAmount < Integer.parseInt(bodyguardCount.getText())){
+											bodyguardAmount++;
+										}
 									}
 								}
 							});
@@ -3812,9 +4053,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(veteranAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Veteran");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											veteranAmount--;
+										}  else {
+											veteranAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/veteranIcon.png")));
 										tempRole.setEnabled(true);
+										if(veteranAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Veteran");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											veteranAmount++;
+										} else if(veteranAmount < Integer.parseInt(veteranCount.getText())){
+											veteranAmount++;
+										}
 									}
 								}
 							});
@@ -3881,9 +4146,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(escortAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Escort");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											escortAmount--;
+										}  else {
+											escortAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/escortIcon.png")));
 										tempRole.setEnabled(true);
+										if(escortAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Escort");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											escortAmount++;
+										} else if(escortAmount < Integer.parseInt(escortCount.getText())){
+											escortAmount++;
+										}
 									}
 								}
 							});
@@ -3949,9 +4238,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(consortAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Consort");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											consortAmount--;
+										}  else {
+											consortAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consortIcon.png")));
 										tempRole.setEnabled(true);
+										if(consortAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Consort");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											consortAmount++;
+										} else if(consortAmount < Integer.parseInt(consortCount.getText())){
+											consortAmount++;
+										}
 									}
 								}
 							});
@@ -4017,9 +4330,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(doctorAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Doctor");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											doctorAmount--;
+										}  else {
+											doctorAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/doctorIcon.png")));
 										tempRole.setEnabled(true);
+										if(doctorAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Doctor");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											doctorAmount++;
+										} else if(doctorAmount < Integer.parseInt(doctorCount.getText())){
+											doctorAmount++;
+										}
 									}
 								}
 							});
@@ -4085,9 +4422,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(jailorAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Jailor");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											jailorAmount--;
+										}  else {
+											jailorAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jailorIcon.png")));
 										tempRole.setEnabled(true);
+										if(jailorAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Jailor");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											jailorAmount++;
+										} else if(jailorAmount < Integer.parseInt(jailorCount.getText())){
+											jailorAmount++;
+										}
 									}
 								}
 							});
@@ -4154,9 +4515,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(godfatherAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Godfather");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											godfatherAmount--;
+										}  else {
+											godfatherAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/godfatherIcon.png")));
 										tempRole.setEnabled(true);
+										if(godfatherAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Godfather");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											godfatherAmount++;
+										} else if(godfatherAmount < Integer.parseInt(godfatherCount.getText())){
+											godfatherAmount++;
+										}
 									}
 								}
 							});
@@ -4222,9 +4607,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(mafiosoAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Mafioso");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											mafiosoAmount--;
+										}  else {
+											mafiosoAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mafiosoIcon.png")));
 										tempRole.setEnabled(true);
+										if(mafiosoAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Mafioso");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											mafiosoAmount++;
+										} else if(mafiosoAmount < Integer.parseInt(mafiosoCount.getText())){
+											mafiosoAmount++;
+										}
 									}
 								}
 							});
@@ -4290,9 +4699,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(disguiserAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Disguiser");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											disguiserAmount--;
+										}  else {
+											disguiserAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/disguiserIcon.png")));
 										tempRole.setEnabled(true);
+										if(disguiserAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Disguiser");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											disguiserAmount++;
+										} else if(disguiserAmount < Integer.parseInt(disguiserCount.getText())){
+											disguiserAmount++;
+										}
 									}
 								}
 							});
@@ -4358,9 +4791,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(janitorAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Janitor");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											janitorAmount--;
+										}  else {
+											janitorAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/janitorIcon.png")));
 										tempRole.setEnabled(true);
+										if(janitorAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Janitor");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											janitorAmount++;
+										} else if(janitorAmount < Integer.parseInt(janitorCount.getText())){
+											janitorAmount++;
+										}
 									}
 								}
 							});
@@ -4426,9 +4883,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(framerAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Framer");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											framerAmount--;
+										}  else {
+											framerAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/framerIcon.png")));
 										tempRole.setEnabled(true);
+										if(framerAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Framer");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											framerAmount++;
+										} else if(framerAmount < Integer.parseInt(framerCount.getText())){
+											framerAmount++;
+										}
 									}
 								}
 							});
@@ -4494,9 +4975,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(blackmailerAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Blackmailer");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											blackmailerAmount--;
+										}  else {
+											blackmailerAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/blackmailerIcon.png")));
 										tempRole.setEnabled(true);
+										if(blackmailerAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Blackmailer");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											blackmailerAmount++;
+										} else if(blackmailerAmount < Integer.parseInt(blackmailerCount.getText())){
+											blackmailerAmount++;
+										}
 									}
 								}
 							});
@@ -4562,9 +5067,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(consigliereAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Consigliere");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											consigliereAmount--;
+										}  else {
+											consigliereAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consigliereIcon.png")));
 										tempRole.setEnabled(true);
+										if(consigliereAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Consigliere");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											consigliereAmount++;
+										} else if(consigliereAmount < Integer.parseInt(consigliereCount.getText())){
+											consigliereAmount++;
+										}
 									}
 								}
 							});
@@ -4630,9 +5159,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(spyAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Spy");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											spyAmount--;
+										}  else {
+											spyAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/spyIcon.png")));
 										tempRole.setEnabled(true);
+										if(spyAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Spy");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											spyAmount++;
+										} else if(spyAmount < Integer.parseInt(spyCount.getText())){
+											spyAmount++;
+										}
 									}
 								}
 							});
@@ -4699,9 +5252,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(serialKillerAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Serial Killer");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											serialKillerAmount--;
+										}  else {
+											serialKillerAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/serialKillerIcon.png")));
 										tempRole.setEnabled(true);
+										if(serialKillerAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Serial Killer");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											serialKillerAmount++;
+										} else if(serialKillerAmount < Integer.parseInt(serialKillerCount.getText())){
+											serialKillerAmount++;
+										}
 									}
 								}
 							});
@@ -4767,9 +5344,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(arsonistAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Arsonist");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											arsonistAmount--;
+										}  else {
+											arsonistAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/arsonistIcon.png")));
 										tempRole.setEnabled(true);
+										if(arsonistAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Arsonist");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											arsonistAmount++;
+										} else if(arsonistAmount < Integer.parseInt(arsonistCount.getText())){
+											arsonistAmount++;
+										}
 									}
 								}
 							});
@@ -4835,9 +5436,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(vigilanteAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Vigilante");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											vigilanteAmount--;
+										}  else {
+											vigilanteAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/vigilanteIcon.png")));
 										tempRole.setEnabled(true);
+										if(vigilanteAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Vigilante");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											vigilanteAmount++;
+										} else if(vigilanteAmount < Integer.parseInt(vigilanteCount.getText())){
+											vigilanteAmount++;
+										}
 									}
 								}
 							});
@@ -4903,9 +5528,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(werewolfAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Werewolf");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											werewolfAmount--;
+										}  else {
+											werewolfAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/werewolfIcon.png")));
 										tempRole.setEnabled(true);
+										if(werewolfAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Werewolf");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											werewolfAmount++;
+										} else if(werewolfAmount < Integer.parseInt(werewolfCount.getText())){
+											werewolfAmount++;
+										}
 									}
 								}
 							});
@@ -4972,9 +5621,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(investigatorAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Investigator");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											investigatorAmount--;
+										}  else {
+											investigatorAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/investigatorIcon.png")));
 										tempRole.setEnabled(true);
+										if(investigatorAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Investigator");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											investigatorAmount++;
+										} else if(investigatorAmount < Integer.parseInt(investigatorCount.getText())){
+											investigatorAmount++;
+										}
 									}
 								}
 							});
@@ -5040,9 +5713,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(sheriffAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Sheriff");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											sheriffAmount--;
+										}  else {
+											sheriffAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/sheriffIcon.png")));
 										tempRole.setEnabled(true);
+										if(sheriffAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Sheriff");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											sheriffAmount++;
+										} else if(sheriffAmount < Integer.parseInt(sheriffCount.getText())){
+											sheriffAmount++;
+										}
 									}
 								}
 							});
@@ -5108,9 +5805,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(retributionistAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Retributionist");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											retributionistAmount--;
+										}  else {
+											retributionistAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/retributionistIcon.png")));
 										tempRole.setEnabled(true);
+										if(retributionistAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Retributionist");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											retributionistAmount++;
+										} else if(retributionistAmount < Integer.parseInt(retributionistCount.getText())){
+											retributionistAmount++;
+										}
 									}
 								}
 							});
@@ -5176,9 +5897,33 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										
+										if(lookoutAmount <= 1){	
+											numActiveNightRoles--;
+	
+											tempNightRoles.remove("Lookout");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											lookoutAmount--;
+										}  else {
+											lookoutAmount--;
+										}
+										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/lookoutIcon.png")));
 										tempRole.setEnabled(true);
+										if(lookoutAmount < 1){
+											numActiveNightRoles++;
+											
+											tempNightRoles.add(0, "Lookout");
+											nightRoles = tempNightRoles.toArray();
+											
+											nightActionSequence = nightRoles;
+											lookoutAmount++;
+										} else if(lookoutAmount < Integer.parseInt(lookoutCount.getText())){
+											lookoutAmount++;
+										}
 									}
 								}
 							});
@@ -5192,6 +5937,8 @@ public class Window {
 				List<String> tempDayRoles = activeRoles.get(1);
 				Object[] dayRoles = tempDayRoles.toArray();
 				Object[][] dayRolesArray = new Object[dayRoles.length][1];
+				
+				numActiveDayRoles = dayRoles.length;
 				
 				for(int i=0; i < dayRoles.length; i++){
 					dayRolesArray[i] = new Object[]{(Object)dayRoles[i]};
@@ -5255,6 +6002,7 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										numActiveDayRoles--;
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/executionerIcon.png")));
 										tempRole.setEnabled(true);
@@ -5323,6 +6071,7 @@ public class Window {
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
+										numActiveDayRoles--;
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mayorIcon.png")));
 										tempRole.setEnabled(true);
@@ -5374,11 +6123,6 @@ public class Window {
 						}
 					});
 				
-//				nextRoleButton.setEnabled(true);
-//				nextRoleButton.setForeground(new Color(139, 69, 19));
-//				nextRole(roleSequenceNumber);
-//				nextRoleButton.requestFocus();
-				
 
 				nextRoleLabel.setText("Day Phase:");
 				roleSequenceNumber = 0;
@@ -5400,17 +6144,18 @@ public class Window {
 		
 		nextRoleButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(roleSequenceNumber < (nightActionSequence.length-1)){
+				if(roleSequenceNumber < (numActiveNightRoles-1)){
 					roleSequenceNumber++;
-					nextRole(roleSequenceNumber);
+					nextRole(nightRoleNumber, roleSequenceNumber);
 				}
-				if(roleSequenceNumber == (nightActionSequence.length-1)){
+				if(roleSequenceNumber == (numActiveNightRoles-1)){
 					roleSequenceNumber++;
 					nextRoleLabel.setText("End Night Phase:");
-				} else if(roleSequenceNumber >= (nightActionSequence.length)){
+				} else if(roleSequenceNumber >= (numActiveNightRoles)){
 					isNight = false;
 					nextRoleLabel.setText("Day Phase:");
 					roleSequenceNumber = 0;
+					nightRoleNumber = 0;
 					nextRoleButton.setEnabled(false);
 					nextRoleButton.setForeground(new Color(200, 200, 200));
 					roleActionLabel.setText("Day Time:");
@@ -5462,11 +6207,25 @@ public class Window {
 		setupSequence();
 	}
 	
-	private void nextRole(int num) {
-		String role = (String)nightActionSequence[num];
-		roleActionLabel.setText(role + ":");
-		roleInstructionText.setText(roleDescriptionMap.get(role));
-		roleActionIcon.setIcon(new ImageIcon(Window.class.getResource(roleIconMap.get(role))));
+	private void nextRole(int roleNum, int sequenceNum) {
+		String role = allNightRoles[roleNum];
+		System.out.print("\n" + role);
+		String sequenceRole = (String)nightActionSequence[sequenceNum];
+		if(role.equals(sequenceRole)){
+			//System.out.print(" = " + sequenceRole);
+			roleActionLabel.setText(role + ":");
+			roleInstructionText.setText(roleDescriptionMap.get(role));
+			roleActionIcon.setIcon(new ImageIcon(Window.class.getResource(roleIconMap.get(role))));
+			nightRoleNumber++;
+		} else {
+			//System.out.print(" /= " + sequenceRole);
+			if(nightRoleNumber < allNightRoles.length - 1){
+				nightRoleNumber++;
+			} else {
+				nightRoleNumber = 0;
+			}
+			nextRole(nightRoleNumber, sequenceNum);
+		}
 	}
 	
 	List<List<String>> setupSequence() {
@@ -5478,32 +6237,41 @@ public class Window {
 		// Setup Roles
 		if(Integer.parseInt(mediumCount.getText()) > 0){
 			activeNightRoles.add("Medium");
+			mediumAmount = Integer.parseInt(mediumCount.getText());
 		}
 		if(Integer.parseInt(amnesiacCount.getText()) > 0){
 			activeNightRoles.add("Amnesiac");
+			amnesiacAmount = Integer.parseInt(amnesiacCount.getText());
 		}
 		if(Integer.parseInt(transporterCount.getText()) > 0){
 			activeNightRoles.add("Transporter");
+			transporterAmount = Integer.parseInt(transporterCount.getText());
 		}
 		if(Integer.parseInt(jesterCount.getText()) > 0){
 			activeNightRoles.add("Jester");
+			jesterAmount = Integer.parseInt(jesterCount.getText());
 		}
 		if(Integer.parseInt(witchCount.getText()) > 0){
 			activeNightRoles.add("Witch");
+			witchAmount = Integer.parseInt(witchCount.getText());
 		}
 		if(Integer.parseInt(survivorCount.getText()) > 0){
 			activeNightRoles.add("Survivor");
+			survivorAmount = Integer.parseInt(survivorCount.getText());
 		}
 		if(Integer.parseInt(bodyguardCount.getText()) > 0){
 			activeNightRoles.add("Bodyguard");
+			bodyguardAmount = Integer.parseInt(bodyguardCount.getText());
 		}
 		if(Integer.parseInt(veteranCount.getText()) > 0){
 			activeNightRoles.add("Veteran");
+			veteranAmount = Integer.parseInt(veteranCount.getText());
 		}
 		
 		// Preventative Roles
 		if(Integer.parseInt(escortCount.getText()) > 0){
 			activeNightRoles.add("Escort");
+			escortAmount = Integer.parseInt(escortCount.getText());
 		}
 		if(Integer.parseInt(consortCount.getText()) > 0){
 			if(Integer.parseInt(godfatherCount.getText()) == 0 && Integer.parseInt(mafiosoCount.getText()) == 0 && Integer.parseInt(disguiserCount.getText()) == 0 && Integer.parseInt(janitorCount.getText()) == 0 && Integer.parseInt(framerCount.getText()) == 0 && Integer.parseInt(blackmailerCount.getText()) == 0 && Integer.parseInt(consigliereCount.getText()) == 0){
@@ -5511,23 +6279,28 @@ public class Window {
 				activeNightRoles.add("Mafioso");
 			}
 			activeNightRoles.add("Consort");
+			consortAmount = Integer.parseInt(consortCount.getText());
 		}
 		if(Integer.parseInt(doctorCount.getText()) > 0){
 			activeNightRoles.add("Doctor");
+			doctorAmount = Integer.parseInt(doctorCount.getText());
 		}
 		if(Integer.parseInt(jailorCount.getText()) > 0){
 			activeNightRoles.add("Jailor");
+			jailorAmount = Integer.parseInt(jailorCount.getText());
 		}
 		
 		// Mafia Operation Roles
 		if(Integer.parseInt(godfatherCount.getText()) > 0){
 			activeNightRoles.add("Godfather");
+			godfatherAmount = Integer.parseInt(godfatherCount.getText());
 		}
 		if(Integer.parseInt(mafiosoCount.getText()) > 0){
 			if(Integer.parseInt(godfatherCount.getText()) == 0){
 				activeNightRoles.add("Godfather");
 			}
 			activeNightRoles.add("Mafioso");
+			mafiosoAmount = Integer.parseInt(mafiosoCount.getText());
 		}
 		if(Integer.parseInt(disguiserCount.getText()) > 0){
 			if(Integer.parseInt(godfatherCount.getText()) == 0 && Integer.parseInt(mafiosoCount.getText()) == 0){
@@ -5535,6 +6308,7 @@ public class Window {
 				activeNightRoles.add("Mafioso");
 			}
 			activeNightRoles.add("Disguiser");
+			disguiserAmount = Integer.parseInt(disguiserCount.getText());
 		}
 		if(Integer.parseInt(janitorCount.getText()) > 0){
 			if(Integer.parseInt(godfatherCount.getText()) == 0 && Integer.parseInt(mafiosoCount.getText()) == 0 && Integer.parseInt(disguiserCount.getText()) == 0){
@@ -5542,6 +6316,7 @@ public class Window {
 				activeNightRoles.add("Mafioso");
 			}
 			activeNightRoles.add("Janitor");
+			janitorAmount = Integer.parseInt(janitorCount.getText());
 		}
 		if(Integer.parseInt(framerCount.getText()) > 0){
 			if(Integer.parseInt(godfatherCount.getText()) == 0 && Integer.parseInt(mafiosoCount.getText()) == 0 && Integer.parseInt(disguiserCount.getText()) == 0 && Integer.parseInt(janitorCount.getText()) == 0){
@@ -5549,6 +6324,7 @@ public class Window {
 				activeNightRoles.add("Mafioso");
 			}
 			activeNightRoles.add("Framer");
+			framerAmount = Integer.parseInt(framerCount.getText());
 		}
 		if(Integer.parseInt(blackmailerCount.getText()) > 0){
 			if(Integer.parseInt(godfatherCount.getText()) == 0 && Integer.parseInt(mafiosoCount.getText()) == 0 && Integer.parseInt(disguiserCount.getText()) == 0 && Integer.parseInt(janitorCount.getText()) == 0 && Integer.parseInt(framerCount.getText()) == 0){
@@ -5556,6 +6332,7 @@ public class Window {
 				activeNightRoles.add("Mafioso");
 			}
 			activeNightRoles.add("Blackmailer");
+			blackmailerAmount = Integer.parseInt(blackmailerCount.getText());
 		}
 		if(Integer.parseInt(consigliereCount.getText()) > 0){
 			if(Integer.parseInt(godfatherCount.getText()) == 0 && Integer.parseInt(mafiosoCount.getText()) == 0 && Integer.parseInt(disguiserCount.getText()) == 0 && Integer.parseInt(janitorCount.getText()) == 0 && Integer.parseInt(framerCount.getText()) == 0 && Integer.parseInt(blackmailerCount.getText()) == 0){
@@ -5563,46 +6340,58 @@ public class Window {
 				activeNightRoles.add("Mafioso");
 			}
 			activeNightRoles.add("Consigliere");
+			consigliereAmount = Integer.parseInt(consigliereCount.getText());
 		}
 		if(Integer.parseInt(spyCount.getText()) > 0){
 			activeNightRoles.add("Spy");
+			spyAmount = Integer.parseInt(spyCount.getText());
 		}
 		
 		// Rogue Killing Roles
 		if(Integer.parseInt(serialKillerCount.getText()) > 0){
 			activeNightRoles.add("Serial Killer");
+			serialKillerAmount = Integer.parseInt(serialKillerCount.getText());
 		}
 		if(Integer.parseInt(arsonistCount.getText()) > 0){
 			activeNightRoles.add("Arsonist");
+			arsonistAmount = Integer.parseInt(arsonistCount.getText());
 		}
 		if(Integer.parseInt(vigilanteCount.getText()) > 0){
 			activeNightRoles.add("Vigilante");
+			vigilanteAmount = Integer.parseInt(vigilanteCount.getText());
 		}
 		if(Integer.parseInt(werewolfCount.getText()) > 0){
 			activeNightRoles.add("Werewolf");
+			werewolfAmount = Integer.parseInt(werewolfCount.getText());
 		}
 		
 		// Town Restorative Roles
 		if(Integer.parseInt(investigatorCount.getText()) > 0){
 			activeNightRoles.add("Investigator");
+			investigatorAmount = Integer.parseInt(investigatorCount.getText());
 		}
 		if(Integer.parseInt(sheriffCount.getText()) > 0){
 			activeNightRoles.add("Sheriff");
+			sheriffAmount = Integer.parseInt(sheriffCount.getText());
 		}
 		if(Integer.parseInt(retributionistCount.getText()) > 0){
 			activeNightRoles.add("Retributionist");
+			retributionistAmount = Integer.parseInt(retributionistCount.getText());
 		}
 		if(Integer.parseInt(lookoutCount.getText()) > 0){
 			activeNightRoles.add("Lookout");
+			lookoutAmount = Integer.parseInt(lookoutCount.getText());
 		}
 
 		
 		// Day
 		if(Integer.parseInt(executionerCount.getText()) > 0){
 			activeDayRoles.add("Executioner");
+			executionerAmount = Integer.parseInt(executionerCount.getText());
 		}
 		if(Integer.parseInt(mayorCount.getText()) > 0){
 			activeDayRoles.add("Mayor");
+			mayorAmount = Integer.parseInt(mayorCount.getText());
 		}
 		
 		activeRoleLists.add(activeNightRoles);

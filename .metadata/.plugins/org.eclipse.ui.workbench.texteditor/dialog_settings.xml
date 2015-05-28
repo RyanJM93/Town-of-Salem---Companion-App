@@ -13,26 +13,26 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="prop.setProperty(&quot;bodyguard&quot;" key="selection"/>
+		<item value="medium" key="selection"/>
 		<list key="findhistory">
-			<item value="prop.setProperty(&quot;bodyguard&quot;"/>
-			<item value="save"/>
-			<item value="doctorIcon"/>
-			<item value="bodyguardIcon"/>
-			<item value="numPlayersComboBox"/>
-			<item value="roleActionIcon"/>
-			<item value="nextRoleButton"/>
-			<item value="System.out"/>
+			<item value="medium"/>
+			<item value="endGam"/>
+			<item value="endGa"/>
+			<item value="nextRoleB"/>
+			<item value="numActiveNightRoles"/>
+			<item value="setupG"/>
+			<item value="setup"/>
+			<item value="startGa"/>
 		</list>
 		<list key="replacehistory">
-			<item value="janitorCount"/>
-			<item value="mafiosoCount"/>
-			<item value="werewolfCount"/>
-			<item value="witchCount"/>
-			<item value="survivorCount"/>
-			<item value="serialKillerCount"/>
-			<item value="jesterCount"/>
-			<item value="executionerCount"/>
+			<item value="amnesiac"/>
+			<item value="transporter"/>
+			<item value="jester"/>
+			<item value="witch"/>
+			<item value="survivor"/>
+			<item value="bodyguard"/>
+			<item value="veteran"/>
+			<item value="escort"/>
 		</list>
 	</section>
 </section>
