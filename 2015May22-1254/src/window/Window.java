@@ -358,7 +358,6 @@ public class Window {
 	private JTable dayRolesTable;
 	final JButton nextRoleButton = new JButton("\u2192");
 	private final JButton nightPhaseButton = new JButton("Night Phase");
-	//private final JPanel activeRolesPanel = new JPanel();
 	private final JPanel activeRolesPanel = new JPanel();
 
 	/**
@@ -1794,7 +1793,7 @@ public class Window {
 		activeRolesPanel.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
 		activeRolesPanel.setBackground(UIManager.getColor("Button.background"));
 		
-		iconTabbedPane.addTab("Active Roles", null, activeRolesPanel, null);
+		//iconTabbedPane.addTab("Active Roles", null, activeRolesPanel, null);
 		activeRolesPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		mainTabbedPane.setBounds(402, 6, 874, 900);
 		
@@ -3463,47 +3462,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/amnesiackilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/amnesiackilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/amnesiackilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/amnesiackilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/amnesiackilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/amnesiackilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/amnesiackilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/amnesiackilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/amnesiackilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/amnesiackilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/amnesiackilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -3555,47 +3554,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/transporterkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/transporterkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/transporterkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/transporterkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/transporterkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/transporterkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/transporterkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/transporterkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/transporterkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/transporterkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/transporterkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -3647,47 +3646,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledByTown.png")));
 						            		
 											
 											if(!jesterFlag){
@@ -3765,47 +3764,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/witchkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/witchkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/witchkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/witchkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/witchkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/witchkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/witchkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/witchkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/witchkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/witchkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/witchkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -3857,47 +3856,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/survivorkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/survivorkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/survivorkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/survivorkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/survivorkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/survivorkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/survivorkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/survivorkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/survivorkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/survivorkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/survivorkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -3949,47 +3948,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/bodyguardkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/bodyguardkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/bodyguardkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/bodyguardkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/bodyguardkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/bodyguardkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/bodyguardkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/bodyguardkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/bodyguardkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/bodyguardkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/bodyguardkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -4041,47 +4040,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/veterankilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/veterankilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/veterankilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/veterankilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/veterankilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/veterankilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/veterankilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/veterankilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/veterankilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/veterankilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/veterankilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -4134,47 +4133,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/escortkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/escortkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/escortkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/escortkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/escortkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/escortkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/escortkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/escortkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/escortkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/escortkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/escortkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -4226,47 +4225,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consortkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consortkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consortkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consortkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consortkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consortkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consortkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consortkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consortkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consortkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consortkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -4318,47 +4317,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/doctorkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/doctorkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/doctorkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/doctorkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/doctorkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/doctorkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/doctorkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/doctorkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/doctorkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/doctorkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/doctorkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -4410,47 +4409,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jailorkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jailorkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jailorkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jailorkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jailorkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jailorkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jailorkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jailorkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jailorkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jailorkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jailorkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -4503,47 +4502,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/godfatherkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/godfatherkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/godfatherkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/godfatherkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/godfatherkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/godfatherkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/godfatherkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/godfatherkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/godfatherkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/godfatherkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/godfatherkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -4595,47 +4594,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mafiosokilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mafiosokilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mafiosokilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mafiosokilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mafiosokilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mafiosokilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mafiosokilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mafiosokilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mafiosokilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mafiosokilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mafiosokilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -4687,47 +4686,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/disguiserkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/disguiserkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/disguiserkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/disguiserkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/disguiserkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/disguiserkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/disguiserkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/disguiserkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/disguiserkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/disguiserkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/disguiserkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -4779,47 +4778,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/janitorkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/janitorkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/janitorkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/janitorkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/janitorkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/janitorkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/janitorkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/janitorkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/janitorkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/janitorkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/janitorkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -4871,47 +4870,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/framerkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/framerkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/framerkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/framerkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/framerkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/framerkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/framerkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/framerkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/framerkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/framerkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/framerkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -4963,47 +4962,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/blackmailerkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/blackmailerkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/blackmailerkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/blackmailerkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/blackmailerkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/blackmailerkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/blackmailerkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/blackmailerkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/blackmailerkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/blackmailerkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/blackmailerkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -5055,47 +5054,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consiglierekilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consiglierekilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consiglierekilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consiglierekilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consiglierekilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consiglierekilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consiglierekilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consiglierekilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consiglierekilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consiglierekilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/consiglierekilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -5147,47 +5146,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/spykilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/spykilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/spykilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/spykilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/spykilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/spykilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/spykilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/spykilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/spykilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/spykilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/spykilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -5240,47 +5239,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/serialKillerkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/serialKillerkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/serialKillerkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/serialKillerkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/serialKillerkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/serialKillerkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/serialKillerkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/serialKillerkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/serialKillerkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/serialKillerkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/serialKillerkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -5332,47 +5331,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/arsonistkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/arsonistkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/arsonistkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/arsonistkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/arsonistkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/arsonistkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/arsonistkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/arsonistkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/arsonistkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/arsonistkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/arsonistkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -5424,47 +5423,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/vigilantekilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/vigilantekilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/vigilantekilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/vigilantekilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/vigilantekilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/vigilantekilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/vigilantekilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/vigilantekilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/vigilantekilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/vigilantekilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/vigilantekilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -5516,47 +5515,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/werewolfkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/werewolfkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/werewolfkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/werewolfkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/werewolfkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/werewolfkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/werewolfkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/werewolfkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/werewolfkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/werewolfkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/werewolfkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -5609,47 +5608,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/investigatorkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/investigatorkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/investigatorkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/investigatorkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/investigatorkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/investigatorkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/investigatorkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/investigatorkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/investigatorkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/investigatorkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/investigatorkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -5701,47 +5700,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/sheriffkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/sheriffkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/sheriffkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/sheriffkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/sheriffkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/sheriffkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/sheriffkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/sheriffkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/sheriffkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/sheriffkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/sheriffkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -5793,47 +5792,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/retributionistkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/retributionistkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/retributionistkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/retributionistkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/retributionistkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/retributionistkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/retributionistkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/retributionistkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/retributionistkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/retributionistkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/retributionistkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -5885,47 +5884,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/lookoutkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/lookoutkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/lookoutkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/lookoutkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/lookoutkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/lookoutkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/lookoutkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/lookoutkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/lookoutkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/lookoutkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/lookoutkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -5990,47 +5989,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/executionerkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/executionerkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/executionerkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/executionerkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/executionerkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/executionerkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/executionerkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/executionerkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/executionerkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/executionerkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/executionerkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They didn't, their target died at night!")){
 						            		//final JLabel temp = new JLabel("");
@@ -6051,47 +6050,47 @@ public class Window {
 										            	
 										            	if(options[choice].equals("Arsonist")){
 										            		//final JLabel temp = new JLabel("");
-										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledByArsonist.png")));
 										            	}
 										            	if(options[choice].equals("Bodyguard")){
 										            		//final JLabel temp = new JLabel("");
-										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledByBodyguard.png")));
 										            	}
 										            	if(options[choice].equals("Jailor")){
 										            		//final JLabel temp = new JLabel("");
-										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledByJailor.png")));
 										            	}
 										            	if(options[choice].equals("Jester")){
 										            		//final JLabel temp = new JLabel("");
-										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledByJester.png")));
 										            	}
 										            	if(options[choice].equals("Mafia")){
 										            		//final JLabel temp = new JLabel("");
-										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledByMafia.png")));
 										            	}
 										            	if(options[choice].equals("Serial Killer")){
 										            		//final JLabel temp = new JLabel("");
-										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledBySerialKiller.png")));
 										            	}
 										            	if(options[choice].equals("Veteran")){
 										            		//final JLabel temp = new JLabel("");
-										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledByVeteran.png")));
 										            	}
 										            	if(options[choice].equals("Vigilante")){
 										            		//final JLabel temp = new JLabel("");
-										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledByVigilante.png")));
 										            	}
 										            	if(options[choice].equals("Werewolf")){
 										            		//final JLabel temp = new JLabel("");
-										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledByWerewolf.png")));
 										            	}
 										            	if(options[choice].equals("Suicide")){
 										            		//final JLabel temp = new JLabel("");
-										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledByTown.png")));
 										            	}
 										            	if(options[choice].equals("They were lynched!")){
 										            		//final JLabel temp = new JLabel("");
-										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterkilledByTown.png")));
 										            		
 															
 															if(!jesterFlag){
@@ -6179,47 +6178,47 @@ public class Window {
 						            	
 						            	if(options[choice].equals("Arsonist")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mayorkilledByArsonist.png")));
 						            	}
 						            	if(options[choice].equals("Bodyguard")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mayorkilledByBodyguard.png")));
 						            	}
 						            	if(options[choice].equals("Jailor")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mayorkilledByJailor.png")));
 						            	}
 						            	if(options[choice].equals("Jester")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mayorkilledByJester.png")));
 						            	}
 						            	if(options[choice].equals("Mafia")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mayorkilledByMafia.png")));
 						            	}
 						            	if(options[choice].equals("Serial Killer")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mayorkilledBySerialKiller.png")));
 						            	}
 						            	if(options[choice].equals("Veteran")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mayorkilledByVeteran.png")));
 						            	}
 						            	if(options[choice].equals("Vigilante")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mayorkilledByVigilante.png")));
 						            	}
 						            	if(options[choice].equals("Werewolf")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mayorkilledByWerewolf.png")));
 						            	}
 						            	if(options[choice].equals("Suicide")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mayorkilledByTown.png")));
 						            	}
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
-						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mayorkilledByTown.png")));
 						            	}
 										tempRole.setEnabled(false);
 										numActiveDayRoles--;
