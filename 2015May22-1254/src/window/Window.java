@@ -147,6 +147,26 @@ public class Window {
 		"Mayor"
 	};
 	
+	Boolean maxThree = false;
+	
+	private JFrame frame;
+	JFrame roleFrame = new JFrame("Role Selection");
+	JPanel roleFrameSelectionPanel = new JPanel();
+	JScrollPane roleSelectionScrollPane = new JScrollPane();
+	
+	private JTable townTable;
+	private JTable mafiaTable;
+	private JTable neutralTable;
+	
+	Color dayColor = new Color(214,217,223);
+	Color nightColor = new Color(192,192,192);
+
+	List<List<String>> activeRoles = new ArrayList<List<String>>();
+	
+	Object[] nightActionSequence = null;
+	HashMap<String, String> roleDescriptionMap = new HashMap<String, String>();
+	HashMap<String, String> roleIconMap = new HashMap<String, String>();
+	HashMap<String, Integer> roleAmount = new HashMap<String, Integer>();
 	Integer mediumAmount = 0;
 	Integer amnesiacAmount = 0;
 	Integer transporterAmount = 0;
@@ -185,25 +205,6 @@ public class Window {
 	
 	Integer numActiveNightRoles = 0;
 	Integer numActiveDayRoles = 0;
-	Boolean maxThree = false;
-	
-	private JFrame frame;
-	JFrame roleFrame = new JFrame("Role Selection");
-	JPanel roleFrameSelectionPanel = new JPanel();
-	JScrollPane roleSelectionScrollPane = new JScrollPane();
-	
-	private JTable townTable;
-	private JTable mafiaTable;
-	private JTable neutralTable;
-	
-	Color dayColor = new Color(214,217,223);
-	Color nightColor = new Color(192,192,192);
-
-	List<List<String>> activeRoles = new ArrayList<List<String>>();
-	
-	Object[] nightActionSequence = null;
-	HashMap<String, String> roleDescriptionMap = new HashMap<String, String>();
-	HashMap<String, String> roleIconMap = new HashMap<String, String>();
 
 	JLabel nightNumber = new JLabel("1");
 	JLabel roleActionLabel = new JLabel(":");
@@ -405,6 +406,43 @@ public class Window {
 		frame.setResizable(false);
 		frame.setBounds(50, 50, 1810, 960);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// TODO Replace all *Amount with hashmap
+		// Put Amount Maps
+		roleAmount.put("Medium", 0);
+		roleAmount.put("Amnesiac", 0);
+		roleAmount.put("Transporter", 0);
+		roleAmount.put("Jester", 0);
+		roleAmount.put("Witch", 0);
+		roleAmount.put("Survivor", 0);
+		roleAmount.put("Bodyguard", 0);
+		roleAmount.put("Veteran", 0);
+		
+		roleAmount.put("Escort", 0);
+		roleAmount.put("Consort", 0);
+		roleAmount.put("Doctor", 0);
+		roleAmount.put("Jailor", 0);
+		
+		roleAmount.put("Godfather", 0);
+		roleAmount.put("Mafioso", 0);
+		roleAmount.put("Disguiser", 0);
+		roleAmount.put("Janitor", 0);
+		roleAmount.put("Framer", 0);
+		roleAmount.put("Blackmailer", 0);
+		roleAmount.put("Consigliere", 0);
+		roleAmount.put("Spy", 0);
+		
+		roleAmount.put("Serial Killer", 0);
+		roleAmount.put("Arsonist", 0);
+		roleAmount.put("Vigilante", 0);
+		roleAmount.put("Werewolf", 0);
+		
+		roleAmount.put("Investigator", 0);
+		roleAmount.put("Sheriff", 0);
+		roleAmount.put("Retributionist", 0);
+		roleAmount.put("Lookout", 0);
+		
+		roleAmount.put("Executioner", 0);
+		roleAmount.put("Mayor", 0);
 		
 		// Put Description Maps
 		roleDescriptionMap.put("Medium", "Wake up.\n\nRead what the dead have written.\n\nErase their tellings once finished.");
@@ -3356,6 +3394,7 @@ public class Window {
 					// Setup Roles
 					if(nightRoles[i].equals("Medium")){
 						for(int j=0; j < Integer.parseInt(mediumCount.getText()); j++){
+							createActiveRole(null, null); // TODO Replace role creation with this method
 							final JLabel tempRole = new JLabel("");
 							tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumIcon.png")));
 							tempRole.setEnabled(true);
@@ -3455,7 +3494,7 @@ public class Window {
 								@Override
 								public void mousePressed(MouseEvent e) {
 									if(tempRole.isEnabled() && !isNight){
-						            	Object[] options = { "Arsonist", "Bodyguard", "Jailor", "Jester", "Mafia", "Serial Killer", "Veteran", "Vigilante", "Werewolf", "Suicide", "They were lynched!" };
+						            	Object[] options = { "Arsonist", "Bodyguard", "Jailor", "Jester", "Mafia", "Serial Killer", "Veteran", "Vigilante", "Werewolf", "Suicide", "They were lynched!", "They selected a role!" };
 						            	int choice = JOptionPane.showOptionDialog(frame, "How did this role die?", "Warning",
 						            	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 						            	null, options, options[0]);
@@ -3503,6 +3542,38 @@ public class Window {
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/amnesiackilledByTown.png")));
+						            	}
+						            	if(options[choice].equals("They selected a role!")){
+						            		//final JLabel temp = new JLabel("");
+						            		Object[] roleOptions = { 
+						            				"Bodyguard",
+						            				"Doctor",
+						            				"Escort",
+						            				"Investigator",
+						            				"Lookout",
+						            				"Medium",
+						            				"Sheriff",
+						            				"Spy",
+						            				"Transporter",
+						            				"Vigilante",
+						            				"Blackmailer",
+						            				"Consigliere",
+						            				"Consort",
+						            				"Disguiser",
+						            				"Framer",
+						            				"Janitor",
+						            				"Arsonist",
+						            				"Executioner",
+						            				"Jester",
+						            				"Serial Killer",
+						            				"Survivor",
+						            				"Witch" };
+							            	int roleChoice = JOptionPane.showOptionDialog(frame, "Which role did they become?", "Warning",
+							            	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+							            	null, options, options[0]);
+							            	
+							            	if(options[choice].equals("Bodyguard")){ // TODO
+							            	}
 						            	}
 										tempRole.setEnabled(false);
 										
@@ -6287,11 +6358,11 @@ public class Window {
 				nightPhaseButton.setEnabled(true);
 				
 				if(isJester){
-					tempNightRoles.remove("Jester"); // TODO
+					tempNightRoles.remove("Jester");
 					nightRoles = tempNightRoles.toArray();
 	
 					numActiveNightRoles--;
-					nightActionSequence = nightRoles; // TODO
+					nightActionSequence = nightRoles;
 				}
 			}
 		});
@@ -6377,6 +6448,97 @@ public class Window {
 		setupSequence();
 	}
 	
+	protected void createActiveRole(final String roleName, final String iconName) {
+		final JLabel tempRole = new JLabel("");
+		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/" + iconName + "Icon.png")));
+		tempRole.setEnabled(true);
+		tempRole.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if(tempRole.isEnabled() && !isNight){
+	            	Object[] options = { "Arsonist", "Bodyguard", "Jailor", "Jester", "Mafia", "Serial Killer", "Veteran", "Vigilante", "Werewolf", "Suicide", "They were lynched!" };
+	            	int choice = JOptionPane.showOptionDialog(frame, "How did this role die?", "Warning",
+	            	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+	            	null, options, options[0]);
+	            	
+	            	if(options[choice].equals("Arsonist")){
+	            		//final JLabel temp = new JLabel("");
+	            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/" + iconName + "killedByArsonist.png")));
+	            	}
+	            	if(options[choice].equals("Bodyguard")){
+	            		//final JLabel temp = new JLabel("");
+	            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/" + iconName + "killedByBodyguard.png")));
+	            	}
+	            	if(options[choice].equals("Jailor")){
+	            		//final JLabel temp = new JLabel("");
+	            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/" + iconName + "killedByJailor.png")));
+	            	}
+	            	if(options[choice].equals("Jester")){
+	            		//final JLabel temp = new JLabel("");
+	            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/" + iconName + "killedByJester.png")));
+	            	}
+	            	if(options[choice].equals("Mafia")){
+	            		//final JLabel temp = new JLabel("");
+	            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/" + iconName + "killedByMafia.png")));
+	            	}
+	            	if(options[choice].equals("Serial Killer")){
+	            		//final JLabel temp = new JLabel("");
+	            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/" + iconName + "killedBySerialKiller.png")));
+	            	}
+	            	if(options[choice].equals("Veteran")){
+	            		//final JLabel temp = new JLabel("");
+	            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/" + iconName + "killedByVeteran.png")));
+	            	}
+	            	if(options[choice].equals("Vigilante")){
+	            		//final JLabel temp = new JLabel("");
+	            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/" + iconName + "killedByVigilante.png")));
+	            	}
+	            	if(options[choice].equals("Werewolf")){
+	            		//final JLabel temp = new JLabel("");
+	            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/" + iconName + "killedByWerewolf.png")));
+	            	}
+	            	if(options[choice].equals("Suicide")){
+	            		//final JLabel temp = new JLabel("");
+	            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/" + iconName + "killedByTown.png")));
+	            	}
+	            	if(options[choice].equals("They were lynched!")){
+	            		//final JLabel temp = new JLabel("");
+	            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/" + iconName + "killedByTown.png")));
+	            	}
+					tempRole.setEnabled(false);
+					
+					if(mediumAmount <= 1){	
+						numActiveNightRoles--;
+
+						tempNightRoles.remove(roleName);
+						nightRoles = tempNightRoles.toArray();
+						
+						nightActionSequence = nightRoles;
+						mediumAmount--;
+					}  else {
+						mediumAmount--;
+					}
+					
+				} else if(!tempRole.isEnabled() && !isNight){
+					tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/" + iconName + "Icon.png")));
+					tempRole.setEnabled(true);
+					if(mediumAmount < 1){
+						numActiveNightRoles++;
+						
+						tempNightRoles.add(0, roleName);
+						nightRoles = tempNightRoles.toArray();
+						
+						nightActionSequence = nightRoles;
+						mediumAmount++;
+					} else if(mediumAmount < Integer.parseInt(mediumCount.getText())){
+						mediumAmount++;
+					}
+				}
+			}
+		});
+		activeRolesPanel.add(tempRole);
+	}
+
 	private void nextRole(int roleNum, int sequenceNum) {
 		String role = allNightRoles[roleNum];
 		//System.out.print("\n" + role);
