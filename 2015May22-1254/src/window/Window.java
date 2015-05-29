@@ -199,6 +199,8 @@ public class Window {
 	Color dayColor = new Color(214,217,223);
 	Color nightColor = new Color(192,192,192);
 
+	List<List<String>> activeRoles = new ArrayList<List<String>>();
+	
 	Object[] nightActionSequence = null;
 	HashMap<String, String> roleDescriptionMap = new HashMap<String, String>();
 	HashMap<String, String> roleIconMap = new HashMap<String, String>();
@@ -271,6 +273,9 @@ public class Window {
 	Boolean enoughRoles = true;
 	Boolean inSession = false;
 	Boolean isNight = false;
+
+	Boolean isJester = false;
+	Boolean jesterFlag = false;
 	
 	JButton clearAllRolesButton = new JButton("Clear All Roles");
 
@@ -1789,7 +1794,7 @@ public class Window {
 		activeRolesPanel.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
 		activeRolesPanel.setBackground(UIManager.getColor("Button.background"));
 		
-		iconTabbedPane.addTab("Active Roles", null, activeRolesPanel, null); // TODO
+		iconTabbedPane.addTab("Active Roles", null, activeRolesPanel, null);
 		activeRolesPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		mainTabbedPane.setBounds(402, 6, 874, 900);
 		
@@ -3339,7 +3344,7 @@ public class Window {
 				iconTabbedPane.addTab("Active Roles", null, activeRolesPanel, null);
 				activeRolesPanel.removeAll();
 				
-				List<List<String>> activeRoles = setupSequence();
+				activeRoles = setupSequence();
 				
 				tempNightRoles = activeRoles.get(0);
 				nightRoles = tempNightRoles.toArray();
@@ -3683,35 +3688,61 @@ public class Window {
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            		
+											
+											if(!jesterFlag){
+												jesterFlag = true;
+												numActiveNightRoles++;
+												
+												tempNightRoles.add(0, "Jester");
+												nightRoles = tempNightRoles.toArray();
+												
+												nightActionSequence = nightRoles;
+												jesterAmount--;
+											}  else {
+												jesterAmount--;
+											}
 						            	}
 										tempRole.setEnabled(false);
 										
-										if(jesterAmount <= 1){	
-											numActiveNightRoles--;
-	
-											tempNightRoles.remove("Jester");
-											nightRoles = tempNightRoles.toArray();
-											
-											nightActionSequence = nightRoles;
-											jesterAmount--;
-										}  else {
-											jesterAmount--;
-										}
+//										if(jesterAmount <= 1){	
+//											numActiveNightRoles--;
+//	
+//											tempNightRoles.remove("Jester");
+//											nightRoles = tempNightRoles.toArray();
+//											
+//											nightActionSequence = nightRoles;
+//											jesterAmount--;
+//										}  else {
+//											jesterAmount--;
+//										}
 										
 									} else if(!tempRole.isEnabled() && !isNight){
 										tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterIcon.png")));
 										tempRole.setEnabled(true);
 										if(jesterAmount < 1){
-											numActiveNightRoles++;
-											
-											tempNightRoles.add(0, "Jester");
-											nightRoles = tempNightRoles.toArray();
+											if(jesterFlag){
+												numActiveNightRoles--;
+												jesterFlag = false;
+											}
 											
 											nightActionSequence = nightRoles;
 											jesterAmount++;
 										} else if(jesterAmount < Integer.parseInt(jesterCount.getText())){
 											jesterAmount++;
 										}
+										
+//										if(jesterAmount < 1){
+//											numActiveNightRoles++;
+//											
+//											tempNightRoles.add(0, "Jester");
+//											nightRoles = tempNightRoles.toArray();
+//											
+//											nightActionSequence = nightRoles;
+//											jesterAmount++;
+//										} else if(jesterAmount < Integer.parseInt(jesterCount.getText())){
+//											jesterAmount++;
+//										}
 									}
 								}
 							});
@@ -5952,7 +5983,7 @@ public class Window {
 								@Override
 								public void mousePressed(MouseEvent e) {
 									if(tempRole.isEnabled() && !isNight){
-						            	Object[] options = { "Arsonist", "Bodyguard", "Jailor", "Jester", "Mafia", "Serial Killer", "Veteran", "Vigilante", "Werewolf", "Suicide", "They were lynched!" };
+						            	Object[] options = { "Arsonist", "Bodyguard", "Jailor", "Jester", "Mafia", "Serial Killer", "Veteran", "Vigilante", "Werewolf", "Suicide", "They were lynched!", "They didn't, their target died at night!" };
 						            	int choice = JOptionPane.showOptionDialog(frame, "How did this role die?", "Warning",
 						            	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 						            	null, options, options[0]);
@@ -6000,6 +6031,126 @@ public class Window {
 						            	if(options[choice].equals("They were lynched!")){
 						            		//final JLabel temp = new JLabel("");
 						            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+						            	}
+						            	if(options[choice].equals("They didn't, their target died at night!")){
+						            		//final JLabel temp = new JLabel("");
+						        			jesterAmount++;
+						        			isJester = true;
+						        			
+						            		final JLabel tempRole = new JLabel("");
+											tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterIcon.png")));
+											tempRole.setEnabled(true);
+											tempRole.addMouseListener(new MouseAdapter() {
+												@Override
+												public void mousePressed(MouseEvent e) {
+													if(tempRole.isEnabled() && !isNight){
+										            	Object[] options = { "Arsonist", "Bodyguard", "Jailor", "Jester", "Mafia", "Serial Killer", "Veteran", "Vigilante", "Werewolf", "Suicide", "They were lynched!" };
+										            	int choice = JOptionPane.showOptionDialog(frame, "How did this role die?", "Warning",
+										            	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+										            	null, options, options[0]);
+										            	
+										            	if(options[choice].equals("Arsonist")){
+										            		//final JLabel temp = new JLabel("");
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByArsonist.png")));
+										            	}
+										            	if(options[choice].equals("Bodyguard")){
+										            		//final JLabel temp = new JLabel("");
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByBodyguard.png")));
+										            	}
+										            	if(options[choice].equals("Jailor")){
+										            		//final JLabel temp = new JLabel("");
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJailor.png")));
+										            	}
+										            	if(options[choice].equals("Jester")){
+										            		//final JLabel temp = new JLabel("");
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByJester.png")));
+										            	}
+										            	if(options[choice].equals("Mafia")){
+										            		//final JLabel temp = new JLabel("");
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByMafia.png")));
+										            	}
+										            	if(options[choice].equals("Serial Killer")){
+										            		//final JLabel temp = new JLabel("");
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledBySerialKiller.png")));
+										            	}
+										            	if(options[choice].equals("Veteran")){
+										            		//final JLabel temp = new JLabel("");
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVeteran.png")));
+										            	}
+										            	if(options[choice].equals("Vigilante")){
+										            		//final JLabel temp = new JLabel("");
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByVigilante.png")));
+										            	}
+										            	if(options[choice].equals("Werewolf")){
+										            		//final JLabel temp = new JLabel("");
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByWerewolf.png")));
+										            	}
+										            	if(options[choice].equals("Suicide")){
+										            		//final JLabel temp = new JLabel("");
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+										            	}
+										            	if(options[choice].equals("They were lynched!")){
+										            		//final JLabel temp = new JLabel("");
+										            		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/mediumkilledByTown.png")));
+										            		
+															
+															if(!jesterFlag){
+																jesterFlag = true;
+																numActiveNightRoles++;
+																
+																tempNightRoles.add(0, "Jester");
+																nightRoles = tempNightRoles.toArray();
+																
+																nightActionSequence = nightRoles;
+																jesterAmount--;
+															}  else {
+																jesterAmount--;
+															}
+										            	}
+														tempRole.setEnabled(false);
+														
+//														if(jesterAmount <= 1){	
+//															numActiveNightRoles--;
+				//	
+//															tempNightRoles.remove("Jester");
+//															nightRoles = tempNightRoles.toArray();
+//															
+//															nightActionSequence = nightRoles;
+//															jesterAmount--;
+//														}  else {
+//															jesterAmount--;
+//														}
+														
+													} else if(!tempRole.isEnabled() && !isNight){
+														tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterIcon.png")));
+														tempRole.setEnabled(true);
+														if(jesterAmount < 1){
+															if(jesterFlag){
+																numActiveNightRoles--;
+																jesterFlag = false;
+															}
+															
+															nightActionSequence = nightRoles;
+															jesterAmount++;
+														} else if(jesterAmount < Integer.parseInt(jesterCount.getText())){
+															jesterAmount++;
+														}
+														
+//														if(jesterAmount < 1){
+//															numActiveNightRoles++;
+//															
+//															tempNightRoles.add(0, "Jester");
+//															nightRoles = tempNightRoles.toArray();
+//															
+//															nightActionSequence = nightRoles;
+//															jesterAmount++;
+//														} else if(jesterAmount < Integer.parseInt(jesterCount.getText())){
+//															jesterAmount++;
+//														}
+													}
+												}
+											});
+											activeRolesPanel.add(tempRole);
 						            	}
 										tempRole.setEnabled(false);
 										numActiveDayRoles--;
@@ -6135,6 +6286,14 @@ public class Window {
 				nightNumberLabel.setText("Day:");
 				nightPhaseButton.setVisible(true);
 				nightPhaseButton.setEnabled(true);
+				
+				if(isJester){
+					tempNightRoles.remove("Jester"); // TODO
+					nightRoles = tempNightRoles.toArray();
+	
+					numActiveNightRoles--;
+					nightActionSequence = nightRoles; // TODO
+				}
 			}
 		});
 		startGameButton.setFont(new Font("Tempus Sans ITC", Font.BOLD, 24));
@@ -6145,6 +6304,7 @@ public class Window {
 		nextRoleButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(roleSequenceNumber < (numActiveNightRoles-1)){
+					
 					roleSequenceNumber++;
 					nextRole(nightRoleNumber, roleSequenceNumber);
 				}
@@ -6153,6 +6313,17 @@ public class Window {
 					nextRoleLabel.setText("End Night Phase:");
 				} else if(roleSequenceNumber >= (numActiveNightRoles)){
 					isNight = false;
+
+					if (jesterFlag) {
+						tempNightRoles = activeRoles.get(0);
+						Boolean jesterRemoved = tempNightRoles.remove("Jester");
+						if(jesterRemoved){
+							nightRoles = tempNightRoles.toArray();
+							numActiveNightRoles--;
+						}
+						nightActionSequence = nightRoles; // TODO
+						jesterFlag = false;
+					}
 					nextRoleLabel.setText("Day Phase:");
 					roleSequenceNumber = 0;
 					nightRoleNumber = 0;
@@ -6209,7 +6380,7 @@ public class Window {
 	
 	private void nextRole(int roleNum, int sequenceNum) {
 		String role = allNightRoles[roleNum];
-		System.out.print("\n" + role);
+		//System.out.print("\n" + role);
 		String sequenceRole = (String)nightActionSequence[sequenceNum];
 		if(role.equals(sequenceRole)){
 			//System.out.print(" = " + sequenceRole);
@@ -6250,6 +6421,7 @@ public class Window {
 		if(Integer.parseInt(jesterCount.getText()) > 0){
 			activeNightRoles.add("Jester");
 			jesterAmount = Integer.parseInt(jesterCount.getText());
+			isJester = true;
 		}
 		if(Integer.parseInt(witchCount.getText()) > 0){
 			activeNightRoles.add("Witch");
@@ -6396,15 +6568,6 @@ public class Window {
 		
 		activeRoleLists.add(activeNightRoles);
 		activeRoleLists.add(activeDayRoles);
-		
-//		System.out.println("\nNight Roles:");
-//		for(int i = 0; i < activeNightRoles.size(); i++){
-//			//System.out.println(activeNightRoles.get(i));
-//		}
-//		System.out.println("\nDay Roles:");
-//		for(int i = 0; i < activeDayRoles.size(); i++){
-//			System.out.println(activeDayRoles.get(i));
-//		}
 		
 		return activeRoleLists;
 	}
@@ -7227,8 +7390,9 @@ public class Window {
 		}
 		switch(numPlayers){
 			case 15:
-				neutralTable.setValueAt(Boolean.TRUE, 3, 2);
-				jesterIcon.setEnabled(true);
+				amount = Integer.parseInt(jesterCount.getText());
+				amount++;
+				enableRole(25, amount);
 			case 14:
 				switch(randomTownChoice){
 					case 1:
