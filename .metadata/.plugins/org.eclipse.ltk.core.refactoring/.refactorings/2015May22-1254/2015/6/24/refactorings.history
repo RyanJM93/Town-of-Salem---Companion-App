@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;tempJester&apos; in &apos;window.Window.insertNight(...)&apos; to &apos;tempRoleSelection&apos;&#x0D;&#x0A;- Original project: &apos;2015May22-1254&apos;&#x0D;&#x0A;- Original element: &apos;window.Window.insertNight(String, String).tempJester&apos;&#x0D;&#x0A;- Renamed element: &apos;tempJester&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;tempJester&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;window{Window.java[Window~insertNight~QString;~QString;@tempJester!166587!166643!166594!166603!QJLabel;!0!false" name="tempRoleSelection" references="true" stamp="1433953403144" version="1.0"/>
+</session>

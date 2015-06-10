@@ -13,16 +13,16 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="jacobIcon" key="selection"/>
+		<item value="activePlayers" key="selection"/>
 		<list key="findhistory">
+			<item value="activePlayers"/>
+			<item value="endGame"/>
+			<item value="Option"/>
+			<item value="OptionsPane"/>
 			<item value="jacobIcon"/>
 			<item value="save"/>
 			<item value="option"/>
 			<item value="create"/>
-			<item value="action"/>
-			<item value="simu"/>
-			<item value="activeRolesPanel"/>
-			<item value="anonymousRoles"/>
 		</list>
 		<list key="replacehistory">
 			<item value="roleCount"/>

@@ -278,20 +278,43 @@ public class Window {
 	
 	JLabel jacobRole = null;
 	Boolean jacobFlag = false;
+	String jacobRoleName = "";
+	Boolean jacobAltDeath = false;
+	
 	JLabel jamieRole = null;
 	Boolean jamieFlag = false;
+	String jamieRoleName = "";
+	Boolean jamieAltDeath = false;
+	
 	JLabel brettRole = null;
 	Boolean brettFlag = false;
+	String brettRoleName = "";
+	Boolean brettAltDeath = false;
+	
 	JLabel calebRole = null;
 	Boolean calebFlag = false;
+	String calebRoleName = "";
+	Boolean calebAltDeath = false;
+	
 	JLabel jeremyRole = null;
 	Boolean jeremyFlag = false;
+	String jeremyRoleName = "";
+	Boolean jeremyAltDeath = false;
+	
 	JLabel dylanRole = null;
 	Boolean dylanFlag = false;
+	String dylanRoleName = "";
+	Boolean dylanAltDeath = false;
+	
 	JLabel benRole = null;
 	Boolean benFlag = false;
+	String benRoleName = "";
+	Boolean benAltDeath = false;
+	
 	JLabel ryanRole = null;
 	Boolean ryanFlag = false;
+	String ryanRoleName = "";
+	Boolean ryanAltDeath = false;
 	
 	Boolean enoughRoles = true;
 	Boolean inSession = false;
@@ -1964,15 +1987,16 @@ public class Window {
 		
 		iconTabbedPane.addTab("Active Players", null, activePlayersPanel, null);
 		activePlayersPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		jacobIcon.setToolTipText("Jacob");
 		jacobIcon.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if(inSession && jacobIcon.isEnabled() && !jacobFlag){
 					String[] choices = allRoles;
-					String roleName = (String)JOptionPane.showInputDialog(frame, "Which role did you get?",
+					jacobRoleName = (String)JOptionPane.showInputDialog(frame, "Which role did you get?",
 							"ComboBox Dialog", JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
-					if(roleName != null){
-						jacobRole = activeRoleJLabels.get(roleName);
+					if(jacobRoleName != null){
+						jacobRole = activeRoleJLabels.get(jacobRoleName);
 						
 						playerMap.put(jacobIcon, jacobRole);
 						
@@ -1984,6 +2008,9 @@ public class Window {
 					jacobIcon.setEnabled(true);
 					jacobRole.dispatchEvent(arg0);
 				} else if(inSession && jacobIcon.isEnabled()){
+					if(jacobRoleName.equals("Executioner") || jacobRoleName.equals("Amnesiac")){
+						jacobAltDeath = true;
+					}
 					jacobIcon.setEnabled(false);
 					jacobRole.dispatchEvent(arg0);
 				} else if(!inSession && !jacobIcon.isEnabled()){
@@ -1997,15 +2024,16 @@ public class Window {
 		jacobIcon.setEnabled(false);
 		
 		activePlayersPanel.add(jacobIcon);
+		jamieIcon.setToolTipText("Jamie");
 		jamieIcon.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if(inSession && jamieIcon.isEnabled() && !jamieFlag){
 					String[] choices = allRoles;
-					String roleName = (String)JOptionPane.showInputDialog(frame, "Which role did you get?",
+					jamieRoleName = (String)JOptionPane.showInputDialog(frame, "Which role did you get?",
 							"ComboBox Dialog", JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
-					if(roleName != null){
-						jamieRole = activeRoleJLabels.get(roleName);
+					if(jamieRoleName != null){
+						jamieRole = activeRoleJLabels.get(jamieRoleName);
 						
 						playerMap.put(jamieIcon, jamieRole);
 						
@@ -2017,6 +2045,9 @@ public class Window {
 					jamieIcon.setEnabled(true);
 					jamieRole.dispatchEvent(arg0);
 				} else if(inSession && jamieIcon.isEnabled()){
+					if(jamieRoleName.equals("Executioner") || jamieRoleName.equals("Amnesiac")){
+						jamieAltDeath = true;
+					}
 					jamieIcon.setEnabled(false);
 					jamieRole.dispatchEvent(arg0);
 				} else if(!inSession && !jamieIcon.isEnabled()){
@@ -2030,15 +2061,16 @@ public class Window {
 		jamieIcon.setEnabled(false);
 		
 		activePlayersPanel.add(jamieIcon);
+		brettIcon.setToolTipText("Brett");
 		brettIcon.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if(inSession && brettIcon.isEnabled() && !brettFlag){
 					String[] choices = allRoles;
-					String roleName = (String)JOptionPane.showInputDialog(frame, "Which role did you get?",
+					String brettRoleName = (String)JOptionPane.showInputDialog(frame, "Which role did you get?",
 							"ComboBox Dialog", JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
-					if(roleName != null){
-						brettRole = activeRoleJLabels.get(roleName);
+					if(brettRoleName != null){
+						brettRole = activeRoleJLabels.get(brettRoleName);
 						
 						playerMap.put(brettIcon, brettRole);
 						
@@ -2050,6 +2082,9 @@ public class Window {
 					brettIcon.setEnabled(true);
 					brettRole.dispatchEvent(arg0);
 				} else if(inSession && brettIcon.isEnabled()){
+					if(brettRoleName.equals("Executioner") || brettRoleName.equals("Amnesiac")){
+						brettAltDeath = true;
+					}
 					brettIcon.setEnabled(false);
 					brettRole.dispatchEvent(arg0);
 				} else if(!inSession && !brettIcon.isEnabled()){
@@ -2059,19 +2094,20 @@ public class Window {
 				}
 			}
 		});
-		brettIcon.setIcon(new ImageIcon(Window.class.getResource("/window/amnesiacIcon.png")));
+		brettIcon.setIcon(new ImageIcon(Window.class.getResource("/window/brettIcon.png")));
 		brettIcon.setEnabled(false);
 		
 		activePlayersPanel.add(brettIcon);
+		calebIcon.setToolTipText("Caleb");
 		calebIcon.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if(inSession && calebIcon.isEnabled() && !calebFlag){
 					String[] choices = allRoles;
-					String roleName = (String)JOptionPane.showInputDialog(frame, "Which role did you get?",
+					String calebRoleName = (String)JOptionPane.showInputDialog(frame, "Which role did you get?",
 							"ComboBox Dialog", JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
-					if(roleName != null){
-						calebRole = activeRoleJLabels.get(roleName);
+					if(calebRoleName != null){
+						calebRole = activeRoleJLabels.get(calebRoleName);
 						
 						playerMap.put(calebIcon, calebRole);
 						
@@ -2083,6 +2119,9 @@ public class Window {
 					calebIcon.setEnabled(true);
 					calebRole.dispatchEvent(arg0);
 				} else if(inSession && calebIcon.isEnabled()){
+					if(calebRoleName.equals("Executioner") || calebRoleName.equals("Amnesiac")){
+						calebAltDeath = true;
+					}
 					calebIcon.setEnabled(false);
 					calebRole.dispatchEvent(arg0);
 				} else if(!inSession && !calebIcon.isEnabled()){
@@ -2092,19 +2131,20 @@ public class Window {
 				}
 			}
 		});
-		calebIcon.setIcon(new ImageIcon(Window.class.getResource("/window/amnesiacIcon.png")));
+		calebIcon.setIcon(new ImageIcon(Window.class.getResource("/window/calebIcon.png")));
 		calebIcon.setEnabled(false);
 		
 		activePlayersPanel.add(calebIcon);
+		jeremyIcon.setToolTipText("Jeremy");
 		jeremyIcon.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if(inSession && jeremyIcon.isEnabled() && !jeremyFlag){
 					String[] choices = allRoles;
-					String roleName = (String)JOptionPane.showInputDialog(frame, "Which role did you get?",
+					jeremyRoleName = (String)JOptionPane.showInputDialog(frame, "Which role did you get?",
 							"ComboBox Dialog", JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
-					if(roleName != null){
-						jeremyRole = activeRoleJLabels.get(roleName);
+					if(jeremyRoleName != null){
+						jeremyRole = activeRoleJLabels.get(jeremyRoleName);
 						
 						playerMap.put(jeremyIcon, jeremyRole);
 						
@@ -2116,6 +2156,9 @@ public class Window {
 					jeremyIcon.setEnabled(true);
 					jeremyRole.dispatchEvent(arg0);
 				} else if(inSession && jeremyIcon.isEnabled()){
+					if(jeremyRoleName.equals("Executioner") || jeremyRoleName.equals("Amnesiac")){
+						jeremyAltDeath = true;
+					}
 					jeremyIcon.setEnabled(false);
 					jeremyRole.dispatchEvent(arg0);
 				} else if(!inSession && !jeremyIcon.isEnabled()){
@@ -2129,15 +2172,16 @@ public class Window {
 		jeremyIcon.setEnabled(false);
 		
 		activePlayersPanel.add(jeremyIcon);
+		dylanIcon.setToolTipText("Dylan");
 		dylanIcon.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if(inSession && dylanIcon.isEnabled() && !dylanFlag){
 					String[] choices = allRoles;
-					String roleName = (String)JOptionPane.showInputDialog(frame, "Which role did you get?",
+					dylanRoleName = (String)JOptionPane.showInputDialog(frame, "Which role did you get?",
 							"ComboBox Dialog", JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
-					if(roleName != null){
-						dylanRole = activeRoleJLabels.get(roleName);
+					if(dylanRoleName != null){
+						dylanRole = activeRoleJLabels.get(dylanRoleName);
 						
 						playerMap.put(dylanIcon, dylanRole);
 						
@@ -2149,6 +2193,9 @@ public class Window {
 					dylanIcon.setEnabled(true);
 					dylanRole.dispatchEvent(arg0);
 				} else if(inSession && dylanIcon.isEnabled()){
+					if(dylanRoleName.equals("Executioner") || dylanRoleName.equals("Amnesiac")){
+						dylanAltDeath = true;
+					}
 					dylanIcon.setEnabled(false);
 					dylanRole.dispatchEvent(arg0);
 				} else if(!inSession && !dylanIcon.isEnabled()){
@@ -2158,19 +2205,20 @@ public class Window {
 				}
 			}
 		});
-		dylanIcon.setIcon(new ImageIcon(Window.class.getResource("/window/amnesiacIcon.png")));
+		dylanIcon.setIcon(new ImageIcon(Window.class.getResource("/window/dylanIcon.png")));
 		dylanIcon.setEnabled(false);
 		
 		activePlayersPanel.add(dylanIcon);
+		benIcon.setToolTipText("Ben");
 		benIcon.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if(inSession && benIcon.isEnabled() && !benFlag){
 					String[] choices = allRoles;
-					String roleName = (String)JOptionPane.showInputDialog(frame, "Which role did you get?",
+					benRoleName = (String)JOptionPane.showInputDialog(frame, "Which role did you get?",
 							"ComboBox Dialog", JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
-					if(roleName != null){
-						benRole = activeRoleJLabels.get(roleName);
+					if(benRoleName != null){
+						benRole = activeRoleJLabels.get(benRoleName);
 						
 						playerMap.put(benIcon, benRole);
 						
@@ -2182,6 +2230,9 @@ public class Window {
 					benIcon.setEnabled(true);
 					benRole.dispatchEvent(arg0);
 				} else if(inSession && benIcon.isEnabled()){
+					if(benRoleName.equals("Executioner") || benRoleName.equals("Amnesiac")){
+						benAltDeath = true;
+					}
 					benIcon.setEnabled(false);
 					benRole.dispatchEvent(arg0);
 				} else if(!inSession && !benIcon.isEnabled()){
@@ -2195,15 +2246,16 @@ public class Window {
 		benIcon.setEnabled(false);
 		
 		activePlayersPanel.add(benIcon);
+		ryanIcon.setToolTipText("Ryan");
 		ryanIcon.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if(inSession && ryanIcon.isEnabled() && !ryanFlag){
 					String[] choices = allRoles;
-					String roleName = (String)JOptionPane.showInputDialog(frame, "Which role did you get?",
+					ryanRoleName = (String)JOptionPane.showInputDialog(frame, "Which role did you get?",
 							"ComboBox Dialog", JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
-					if(roleName != null){
-						ryanRole = activeRoleJLabels.get(roleName);
+					if(ryanRoleName != null){
+						ryanRole = activeRoleJLabels.get(ryanRoleName);
 						
 						playerMap.put(ryanIcon, ryanRole);
 						
@@ -2215,6 +2267,9 @@ public class Window {
 					ryanIcon.setEnabled(true);
 					ryanRole.dispatchEvent(arg0);
 				} else if(inSession && ryanIcon.isEnabled()){
+					if(ryanRoleName.equals("Executioner") || ryanRoleName.equals("Amnesiac")){
+						ryanAltDeath = true;
+					}
 					ryanIcon.setEnabled(false);
 					ryanRole.dispatchEvent(arg0);
 				} else if(!inSession && !ryanIcon.isEnabled()){
@@ -2224,7 +2279,7 @@ public class Window {
 				}
 			}
 		});
-		ryanIcon.setIcon(new ImageIcon(Window.class.getResource("/window/amnesiacIcon.png")));
+		ryanIcon.setIcon(new ImageIcon(Window.class.getResource("/window/ryanIcon.png")));
 		ryanIcon.setEnabled(false);
 		
 		activePlayersPanel.add(ryanIcon);
@@ -4185,7 +4240,7 @@ public class Window {
 		setupSequence();
 	}
 	
-	protected void createActiveRole(final String roleName, final String iconName) { // TODO Create active role
+	protected JLabel createActiveRole(final String roleName, final String iconName) { // TODO Create active role
 		final JLabel tempRole = new JLabel("");
 		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/" + iconName + "Icon.png")));
 		tempRole.setEnabled(true);
@@ -4292,13 +4347,63 @@ public class Window {
 							}
 
 						}
-						if (options[choice]
-								.equals("They didn't, their target died at night!")) {
-							roleAmount.put("Jester",
-									roleAmount.get("Jester") + 1);
+						if (options[choice].equals("They didn't, their target died at night!")) {
+							roleAmount.put("Jester", roleAmount.get("Jester") + 1);
 							isJester = true;
+							
+							activeRoleJLabels.put("Jester", tempRole);
 
-							createActiveRole("Jester", "jester");
+							JLabel tempJester = createActiveRole("Jester", "jester");
+
+							if(jacobAltDeath){
+								jacobAltDeath = false;
+								jacobIcon.setEnabled(true);
+								jacobRoleName = "Jester";
+								playerMap.put(jacobIcon, tempJester);
+								jacobRole = tempJester;
+							} else if(jamieAltDeath){
+								jamieAltDeath = false;
+								jamieIcon.setEnabled(true);
+								jamieRoleName = "Jester";
+								playerMap.put(jamieIcon, tempJester);
+								jamieRole = tempJester;
+							} else if(brettAltDeath){
+								brettAltDeath = false;
+								brettIcon.setEnabled(true);
+								brettRoleName = "Jester";
+								playerMap.put(brettIcon, tempJester);
+								brettRole = tempJester;
+							} else if(calebAltDeath){
+								calebAltDeath = false;
+								calebIcon.setEnabled(true);
+								calebRoleName = "Jester";
+								playerMap.put(calebIcon, tempJester);
+								calebRole = tempJester;
+							} else if(jeremyAltDeath){
+								jeremyAltDeath = false;
+								jeremyIcon.setEnabled(true);
+								jeremyRoleName = "Jester";
+								playerMap.put(jeremyIcon, tempJester);
+								jeremyRole = tempJester;
+							} else if(dylanAltDeath){
+								dylanAltDeath = false;
+								dylanIcon.setEnabled(true);
+								dylanRoleName = "Jester";
+								playerMap.put(dylanIcon, tempJester);
+								dylanRole = tempJester;
+							} else if(benAltDeath){
+								benAltDeath = false;
+								benIcon.setEnabled(true);
+								benRoleName = "Jester";
+								playerMap.put(benIcon, tempJester);
+								benRole = tempJester;
+							} else if(ryanAltDeath){
+								ryanAltDeath = false;
+								ryanIcon.setEnabled(true);
+								ryanRoleName = "Jester";
+								playerMap.put(ryanIcon, tempJester);
+								ryanRole = tempJester;
+							}
 						}
 						if (options[choice].equals("They selected a role!")) {
 							//final JLabel temp = new JLabel("");
@@ -4489,6 +4594,7 @@ public class Window {
 		});
 		activeRolesPanel.add(tempRole);
 		activeRoleJLabels.put(roleName, tempRole);
+		return tempRole;
 	}
 	
 	void insertNight(String roleName, String iconName){
@@ -4507,7 +4613,60 @@ public class Window {
 		}
 		
 		roleAmount.put(roleName, roleAmount.get(roleName)+1);
-		createActiveRole(roleName, iconName);
+		//createActiveRole(roleName, iconName);
+		
+		JLabel tempRoleSelection = createActiveRole(roleName, iconName);
+
+		if(jacobAltDeath){
+			jacobAltDeath = false;
+			jacobIcon.setEnabled(true);
+			jacobRoleName = roleName;
+			playerMap.put(jacobIcon, tempRoleSelection);
+			jacobRole = tempRoleSelection;
+		} else if(jamieAltDeath){
+			jamieAltDeath = false;
+			jamieIcon.setEnabled(true);
+			jamieRoleName = roleName;
+			playerMap.put(jamieIcon, tempRoleSelection);
+			jamieRole = tempRoleSelection;
+		} else if(brettAltDeath){
+			brettAltDeath = false;
+			brettIcon.setEnabled(true);
+			brettRoleName = roleName;
+			playerMap.put(brettIcon, tempRoleSelection);
+			brettRole = tempRoleSelection;
+		} else if(calebAltDeath){
+			calebAltDeath = false;
+			calebIcon.setEnabled(true);
+			calebRoleName = roleName;
+			playerMap.put(calebIcon, tempRoleSelection);
+			calebRole = tempRoleSelection;
+		} else if(jeremyAltDeath){
+			jeremyAltDeath = false;
+			jeremyIcon.setEnabled(true);
+			jeremyRoleName = roleName;
+			playerMap.put(jeremyIcon, tempRoleSelection);
+			jeremyRole = tempRoleSelection;
+		} else if(dylanAltDeath){
+			dylanAltDeath = false;
+			dylanIcon.setEnabled(true);
+			dylanRoleName = roleName;
+			playerMap.put(dylanIcon, tempRoleSelection);
+			dylanRole = tempRoleSelection;
+		} else if(benAltDeath){
+			benAltDeath = false;
+			benIcon.setEnabled(true);
+			benRoleName = roleName;
+			playerMap.put(benIcon, tempRoleSelection);
+			benRole = tempRoleSelection;
+		} else if(ryanAltDeath){
+			ryanAltDeath = false;
+			ryanIcon.setEnabled(true);
+			ryanRoleName = roleName;
+			playerMap.put(ryanIcon, tempRoleSelection);
+			ryanRole = tempRoleSelection;
+		}
+		
 		Integer tempCount = roleCount.get(roleName)+1;
 		roleCount.put(roleName, tempCount);
 		
@@ -4517,6 +4676,7 @@ public class Window {
 			nightRoles = tempNightRoles.toArray();
 			nightActionSequence = nightRoles;
 		}
+
 	}
 
 	private void nextRole(int roleNum, int sequenceNum) {
