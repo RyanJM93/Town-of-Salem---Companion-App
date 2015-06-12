@@ -13,18 +13,19 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="activePlayers" key="selection"/>
+		<item value="amnesiac" key="selection"/>
 		<list key="findhistory">
-			<item value="activePlayers"/>
-			<item value="endGame"/>
-			<item value="Option"/>
-			<item value="OptionsPane"/>
-			<item value="jacobIcon"/>
-			<item value="save"/>
-			<item value="option"/>
-			<item value="create"/>
+			<item value="insomniac"/>
+			<item value="startGameButton"/>
+			<item value="activeRoleJLabels"/>
+			<item value="roleOptions"/>
+			<item value="dispatchEvent"/>
+			<item value="activeTown"/>
+			<item value="mainInfoPane"/>
+			<item value="iconPanel"/>
 		</list>
 		<list key="replacehistory">
+			<item value="amnesiac"/>
 			<item value="roleCount"/>
 			<item value="&quot; + iconName + &quot;"/>
 			<item value="roleOptions"/>
@@ -32,7 +33,6 @@
 			<item value="jester"/>
 			<item value="executioner"/>
 			<item value="lookout"/>
-			<item value="retributionist"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">

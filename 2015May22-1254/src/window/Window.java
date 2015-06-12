@@ -108,6 +108,7 @@ import java.awt.event.KeyEvent;
 @SuppressWarnings("unused")
 public class Window {
 
+	// Global Variables
 	private static final int MAX_GAMEMODES = 10;
 	private static final int NUM_ROLES = 30;
 	private static final String notEnoughRoles = "You don't have enough roles selected! Add some roles or decrease the number of players!";
@@ -148,38 +149,39 @@ public class Window {
 	};
 	
 	private static final String[] allRoles = {
-		"Bodyguard",
-		"Doctor",
-		"Escort",
-		"Investigator",
-		"Jailor",
-		"Lookout",
-		"Mayor",
-		"Medium",
-		"Retributionist",
-		"Sheriff",
-		"Spy",
-		"Transporter",
-		"Veteran",
-		"Vigilante",
+		"Amnesiac",
+		"Arsonist",
 		"Blackmailer",
+		"Bodyguard",
 		"Consigliere",
 		"Consort",
 		"Disguiser",
+		"Doctor",
+		"Escort",
+		"Executioner",
 		"Framer",
 		"Godfather",
+		"Investigator",
+		"Jailor",
 		"Janitor",
-		"Mafioso",
-		"Amnesiac",
-		"Arsonist",
-		"Executioner",
 		"Jester",
+		"Lookout",
+		"Mafioso",
+		"Mayor",
+		"Medium",
+		"Retributionist",
 		"Serial Killer",
+		"Sheriff",
+		"Spy",
 		"Survivor",
+		"Transporter",
+		"Veteran",
+		"Vigilante",
 		"Werewolf",
 		"Witch"
 	};
-	
+
+	// Declarations
 	Boolean maxThree = false;
 	Boolean anonymousRoles = false;
 	
@@ -196,15 +198,19 @@ public class Window {
 	Color nightColor = new Color(192,192,192);
 
 	List<List<String>> activeRoles = new ArrayList<List<String>>();
+	Integer activeTown = 0;
+	Integer activeMafia = 0;
+	Integer activeNeutral = 0;
 	
 	ArrayList<String> deadRoles;
 	
 	Object[] nightActionSequence = null;
+	
+	// HashMaps
 	HashMap<String, String> roleDescriptionMap = new HashMap<String, String>();
 	HashMap<String, String> roleIconMap = new HashMap<String, String>();
 	HashMap<String, Integer> roleAmount = new HashMap<String, Integer>();
 	HashMap<String, Integer> roleCount = new HashMap<String, Integer>();
-	
 	HashMap<String, JLabel> activeRoleJLabels = new HashMap<String, JLabel>();
 	HashMap<JLabel, JLabel> playerMap = new HashMap<JLabel, JLabel>();
 	
@@ -276,6 +282,7 @@ public class Window {
 	JLabel witchIcon = new JLabel("");
 	JLabel werewolfIcon = new JLabel("");
 	
+	// Player Roles
 	JLabel jacobRole = null;
 	Boolean jacobFlag = false;
 	String jacobRoleName = "";
@@ -332,6 +339,9 @@ public class Window {
 	List<String> tempNightRoles = new ArrayList<String>();
 	Object[] nightRoles = tempNightRoles.toArray();
 	Object[][] nightRolesArray = new Object[nightRoles.length][1];
+	
+
+	JButton endGameButton = new JButton("End Game");
 	
 	private final JTabbedPane mainTabbedPane = new JTabbedPane(JTabbedPane.TOP);
 	private final JScrollPane gameSetupPane = new JScrollPane();
@@ -414,6 +424,13 @@ public class Window {
 	private final JLabel dylanIcon = new JLabel("");
 	private final JLabel benIcon = new JLabel("");
 	private final JLabel ryanIcon = new JLabel("");
+	
+
+	final JPanel inSessionDataPanel = new JPanel();
+	final JPanel headerPanel = new JPanel();
+	final JPanel rolesPanel = new JPanel();
+	final JPanel iconPanel = new JPanel();
+	final JScrollPane mainInfoPane = new JScrollPane();
 
 	/**
 	 * Launch the application.
@@ -451,6 +468,8 @@ public class Window {
 	 */
 	@SuppressWarnings({ "serial", "rawtypes", "unchecked" })
 	private void initialize() {
+		
+		// Main JFrame initialization
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		double width = screenSize.getWidth();
 		double height = screenSize.getHeight();
@@ -1063,14 +1082,12 @@ public class Window {
 		
 		
 		
-		final JPanel headerPanel = new JPanel();
 		frame.getContentPane().add(headerPanel, BorderLayout.NORTH);
 		mainViewportPanel.setBackground(UIManager.getColor("Button.background"));
 		
 		frame.getContentPane().add(mainViewportPanel, BorderLayout.CENTER);
 		mainViewportPanel.setLayout(null);
 		
-		final JPanel rolesPanel = new JPanel();
 		rolesPanel.setBackground(UIManager.getColor("Button.background"));
 		rolesPanel.setBounds(10, 11, 380, 295);
 		mainViewportPanel.add(rolesPanel);
@@ -1887,7 +1904,6 @@ public class Window {
 		roleSelectionScrollPane.setViewportBorder(null);
 		roleSelectionPanel.add(roleSelectionScrollPane);
 		
-		final JPanel iconPanel = new JPanel();
 		iconPanel.setBackground(UIManager.getColor("Button.background"));
 		iconPanel.setBounds(1288, 11, 500, 890);
 		mainViewportPanel.add(iconPanel);
@@ -1895,6 +1911,8 @@ public class Window {
 		
 		iconPanel.add(iconTabbedPane);
 
+		// Change Listeners
+		
 		ChangeListener rolesTabListener = new ChangeListener() {
 			public void stateChanged(ChangeEvent changeEvent) {
 				JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();
@@ -1987,6 +2005,9 @@ public class Window {
 		
 		iconTabbedPane.addTab("Active Players", null, activePlayersPanel, null);
 		activePlayersPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		// Player Icons
+		
 		jacobIcon.setToolTipText("Jacob");
 		jacobIcon.addMouseListener(new MouseAdapter() {
 			@Override
@@ -2286,14 +2307,12 @@ public class Window {
 		activeRolesPanel.setPreferredSize(new Dimension(480, 960));
 		activeRolesPanel.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
 		activeRolesPanel.setBackground(UIManager.getColor("Button.background"));
-		
-		//iconTabbedPane.addTab("Active Roles", null, activeRolesPanel, null);
+
 		activeRolesPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		mainTabbedPane.setBounds(402, 6, 874, 900);
 		
 		mainViewportPanel.add(mainTabbedPane);
 		
-		final JScrollPane mainInfoPane = new JScrollPane();
 		mainTabbedPane.addTab("Main", null, mainInfoPane, null);
 		mainInfoPanel.setBackground(UIManager.getColor("Button.background"));
 		mainInfoPanel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -2373,12 +2392,6 @@ public class Window {
 			}
 			
 			gameModeComboBoxModel = gamemodes.toArray(new String[gamemodes.size()]);
-			
-//			String name = gamemodesprop.getProperty("name");
-//			String description = gamemodesprop.getProperty("description");
-//			gameModeDescriptionText.setText(description);
-//			String numPlayers = gamemodesprop.getProperty("numPlayers");
-//			numPlayersComboBox.setSelectedItem(numPlayers);
 	 
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -2399,7 +2412,6 @@ public class Window {
 		}
 		
 		gameModeComboBox.setBounds(152, 33, 131, 26);
-//		gameModeComboBox.setSelectedItem("Classic");
 		gameModeComboBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent ie) {
 				String mode = gameModeComboBox.getSelectedItem().toString();
@@ -2452,7 +2464,7 @@ public class Window {
 		}
 		newFile.delete();
 		
-		
+		// Game Setup Buttons
 		
 		JButton editModeButton = new JButton("Edit Mode");
 		editModeButton.setBounds(295, 32, 90, 28);
@@ -2516,11 +2528,9 @@ public class Window {
 		numPlayersComboBox.setModel(new DefaultComboBoxModel(new String[] {"7", "8", "9", "10", "11", "12", "13", "14", "15"}));
 		numPlayersComboBox.setMaximumRowCount(15);
 		numPlayersComboBox.setBounds(166, 209, 47, 26);
-		numPlayersComboBox.setSelectedItem("10");
+		numPlayersComboBox.setSelectedItem("8");
 		numPlayersComboBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent ie) {
-				//String numPlayersString = numPlayersComboBox.getSelectedItem().toString();
-				//int numPlayers = Integer.parseInt(numPlayersString); 
 				String currentGameMode = gameModeComboBox.getSelectedItem().toString();
 				if(currentGameMode.equals("All Any") || currentGameMode.equals("Classic") || currentGameMode.equals("Custom") || currentGameMode.equals("Vigilantics")){
 					setupGameMode(currentGameMode);
@@ -2536,6 +2546,8 @@ public class Window {
 		separator_1.setBounds(32, 281, 748, 2);
 		
 		setupDataPanel.add(separator_1);
+		
+		// Town Counts
 		
 		bodyguardCount = new JTextField();
 		bodyguardCount.setText("0");
@@ -2562,69 +2574,9 @@ public class Window {
 				enableRole(0, amount);
 			}
 		});
+		bodyguardCount.setColumns(10);
 		bodyguardCount.setBounds(134, 344, 20, 28);
 		setupDataPanel.add(bodyguardCount);
-		bodyguardCount.setColumns(10);
-		
-		JLabel bodyguardLabel = new JLabel("Bodyguard: x");
-		bodyguardLabel.setForeground(new Color(0, 128, 0));
-		bodyguardLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		bodyguardLabel.setBounds(32, 344, 90, 26);
-		setupDataPanel.add(bodyguardLabel);
-		
-		JLabel doctorLabel = new JLabel("Doctor: x");
-		doctorLabel.setForeground(new Color(0, 128, 0));
-		doctorLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		doctorLabel.setBounds(32, 382, 90, 26);
-		setupDataPanel.add(doctorLabel);
-		
-		JLabel escortLabel = new JLabel("Escort: x");
-		escortLabel.setForeground(new Color(0, 128, 0));
-		escortLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		escortLabel.setBounds(32, 420, 90, 26);
-		setupDataPanel.add(escortLabel);
-		
-		JLabel investigatorLabel = new JLabel("Investigator: x");
-		investigatorLabel.setForeground(new Color(0, 128, 0));
-		investigatorLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		investigatorLabel.setBounds(32, 458, 97, 26);
-		setupDataPanel.add(investigatorLabel);
-		
-		JLabel jailorLabel = new JLabel("Jailor: x");
-		jailorLabel.setForeground(new Color(0, 128, 0));
-		jailorLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		jailorLabel.setBounds(32, 496, 90, 26);
-		setupDataPanel.add(jailorLabel);
-		
-		JLabel lookoutLabel = new JLabel("Lookout: x");
-		lookoutLabel.setForeground(new Color(0, 128, 0));
-		lookoutLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		lookoutLabel.setBounds(32, 534, 90, 26);
-		setupDataPanel.add(lookoutLabel);
-		
-		JLabel mayorLabel = new JLabel("Mayor: x");
-		mayorLabel.setForeground(new Color(0, 128, 0));
-		mayorLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		mayorLabel.setBounds(32, 572, 90, 26);
-		setupDataPanel.add(mayorLabel);
-		
-		JLabel mediumLabel = new JLabel("Medium: x");
-		mediumLabel.setForeground(new Color(0, 128, 0));
-		mediumLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		mediumLabel.setBounds(32, 610, 90, 26);
-		setupDataPanel.add(mediumLabel);
-		
-		JLabel retributionistLabel = new JLabel("Retributionist: x");
-		retributionistLabel.setForeground(new Color(0, 128, 0));
-		retributionistLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		retributionistLabel.setBounds(32, 648, 108, 26);
-		setupDataPanel.add(retributionistLabel);
-		
-		JLabel sheriffLabel = new JLabel("Sheriff: x");
-		sheriffLabel.setForeground(new Color(0, 128, 0));
-		sheriffLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		sheriffLabel.setBounds(32, 686, 90, 26);
-		setupDataPanel.add(sheriffLabel);
 		
 		doctorCount = new JTextField();
 		doctorCount.setText("0");
@@ -2880,56 +2832,6 @@ public class Window {
 		sheriffCount.setBounds(134, 686, 20, 28);
 		
 		setupDataPanel.add(sheriffCount);
-		spyLabel.setForeground(new Color(0, 128, 0));
-		spyLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		spyLabel.setBounds(166, 343, 108, 26);
-		
-		setupDataPanel.add(spyLabel);
-		transporterLabel.setForeground(new Color(0, 128, 0));
-		transporterLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		transporterLabel.setBounds(166, 382, 108, 26);
-		
-		setupDataPanel.add(transporterLabel);
-		veteranLabel.setForeground(new Color(0, 128, 0));
-		veteranLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		veteranLabel.setBounds(166, 420, 108, 26);
-		
-		setupDataPanel.add(veteranLabel);
-		vigilanteLabel.setForeground(new Color(0, 128, 0));
-		vigilanteLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		vigilanteLabel.setBounds(166, 458, 108, 26);
-		
-		setupDataPanel.add(vigilanteLabel);
-		blackmailerLabel.setForeground(new Color(128, 0, 0));
-		blackmailerLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		blackmailerLabel.setBounds(166, 496, 108, 26);
-		
-		setupDataPanel.add(blackmailerLabel);
-		consigliereLabel.setForeground(new Color(128, 0, 0));
-		consigliereLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		consigliereLabel.setBounds(166, 534, 108, 26);
-		
-		setupDataPanel.add(consigliereLabel);
-		consortLabel.setForeground(new Color(128, 0, 0));
-		consortLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		consortLabel.setBounds(166, 572, 108, 26);
-		
-		setupDataPanel.add(consortLabel);
-		disguiserLabel.setForeground(new Color(128, 0, 0));
-		disguiserLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		disguiserLabel.setBounds(166, 610, 108, 26);
-		
-		setupDataPanel.add(disguiserLabel);
-		framerLabel.setForeground(new Color(128, 0, 0));
-		framerLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		framerLabel.setBounds(166, 648, 108, 26);
-		
-		setupDataPanel.add(framerLabel);
-		godfatherLabel.setForeground(new Color(128, 0, 0));
-		godfatherLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		godfatherLabel.setBounds(166, 686, 108, 26);
-		
-		setupDataPanel.add(godfatherLabel);
 		spyCount.setText("0");
 		spyCount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -3042,6 +2944,92 @@ public class Window {
 		vigilanteCount.setBounds(267, 457, 20, 28);
 		
 		setupDataPanel.add(vigilanteCount);
+		
+		// Town Labels
+		
+		JLabel bodyguardLabel = new JLabel("Bodyguard: x");
+		bodyguardLabel.setForeground(new Color(0, 128, 0));
+		bodyguardLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		bodyguardLabel.setBounds(32, 344, 90, 26);
+		setupDataPanel.add(bodyguardLabel);
+		
+		JLabel doctorLabel = new JLabel("Doctor: x");
+		doctorLabel.setForeground(new Color(0, 128, 0));
+		doctorLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		doctorLabel.setBounds(32, 382, 90, 26);
+		setupDataPanel.add(doctorLabel);
+		
+		JLabel escortLabel = new JLabel("Escort: x");
+		escortLabel.setForeground(new Color(0, 128, 0));
+		escortLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		escortLabel.setBounds(32, 420, 90, 26);
+		setupDataPanel.add(escortLabel);
+		
+		JLabel investigatorLabel = new JLabel("Investigator: x");
+		investigatorLabel.setForeground(new Color(0, 128, 0));
+		investigatorLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		investigatorLabel.setBounds(32, 458, 97, 26);
+		setupDataPanel.add(investigatorLabel);
+		
+		JLabel jailorLabel = new JLabel("Jailor: x");
+		jailorLabel.setForeground(new Color(0, 128, 0));
+		jailorLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		jailorLabel.setBounds(32, 496, 90, 26);
+		setupDataPanel.add(jailorLabel);
+		
+		JLabel lookoutLabel = new JLabel("Lookout: x");
+		lookoutLabel.setForeground(new Color(0, 128, 0));
+		lookoutLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		lookoutLabel.setBounds(32, 534, 90, 26);
+		setupDataPanel.add(lookoutLabel);
+		
+		JLabel mayorLabel = new JLabel("Mayor: x");
+		mayorLabel.setForeground(new Color(0, 128, 0));
+		mayorLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		mayorLabel.setBounds(32, 572, 90, 26);
+		setupDataPanel.add(mayorLabel);
+		
+		JLabel mediumLabel = new JLabel("Medium: x");
+		mediumLabel.setForeground(new Color(0, 128, 0));
+		mediumLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		mediumLabel.setBounds(32, 610, 90, 26);
+		setupDataPanel.add(mediumLabel);
+		
+		JLabel retributionistLabel = new JLabel("Retributionist: x");
+		retributionistLabel.setForeground(new Color(0, 128, 0));
+		retributionistLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		retributionistLabel.setBounds(32, 648, 108, 26);
+		setupDataPanel.add(retributionistLabel);
+		
+		JLabel sheriffLabel = new JLabel("Sheriff: x");
+		sheriffLabel.setForeground(new Color(0, 128, 0));
+		sheriffLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		sheriffLabel.setBounds(32, 686, 90, 26);
+		setupDataPanel.add(sheriffLabel);
+		
+		spyLabel.setForeground(new Color(0, 128, 0));
+		spyLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		spyLabel.setBounds(166, 343, 108, 26);
+		
+		setupDataPanel.add(spyLabel);
+		transporterLabel.setForeground(new Color(0, 128, 0));
+		transporterLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		transporterLabel.setBounds(166, 382, 108, 26);
+		
+		setupDataPanel.add(transporterLabel);
+		veteranLabel.setForeground(new Color(0, 128, 0));
+		veteranLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		veteranLabel.setBounds(166, 420, 108, 26);
+		
+		setupDataPanel.add(veteranLabel);
+		vigilanteLabel.setForeground(new Color(0, 128, 0));
+		vigilanteLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		vigilanteLabel.setBounds(166, 458, 108, 26);
+		
+		setupDataPanel.add(vigilanteLabel);
+		
+		// Mafia Counts
+		
 		blackmailerCount.setText("0");
 		blackmailerCount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -3210,6 +3198,108 @@ public class Window {
 		godfatherCount.setBounds(267, 685, 20, 28);
 		
 		setupDataPanel.add(godfatherCount);
+		janitorCount.setText("0");
+		janitorCount.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(janitorCount.getText().equals("")){
+					janitorCount.setText("0");
+				} else if(Integer.parseInt(janitorCount.getText()) > 3 && maxThree){
+					janitorCount.setText("3");
+				}
+				Integer amount = Integer.parseInt(janitorCount.getText().toString());
+				enableRole(20, amount);
+			}
+		});
+		janitorCount.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(janitorCount.getText().equals("")){
+					janitorCount.setText("0");
+				} else if(Integer.parseInt(janitorCount.getText()) > 3 && maxThree){
+					janitorCount.setText("3");
+				}
+				int amount = Integer.parseInt(janitorCount.getText().toString());
+				enableRole(20, amount);
+			}
+		});
+		janitorCount.setColumns(10);
+		janitorCount.setBounds(402, 344, 20, 28);
+		
+		setupDataPanel.add(janitorCount);
+		mafiosoCount.setText("0");
+		mafiosoCount.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(mafiosoCount.getText().equals("")){
+					mafiosoCount.setText("0");
+				} else if(Integer.parseInt(mafiosoCount.getText()) > 3 && maxThree){
+					mafiosoCount.setText("3");
+				}
+				Integer amount = Integer.parseInt(mafiosoCount.getText().toString());
+				enableRole(21, amount);
+			}
+		});
+		mafiosoCount.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(mafiosoCount.getText().equals("")){
+					mafiosoCount.setText("0");
+				} else if(Integer.parseInt(mafiosoCount.getText()) > 3 && maxThree){
+					mafiosoCount.setText("3");
+				}
+				int amount = Integer.parseInt(mafiosoCount.getText().toString());
+				enableRole(21, amount);
+			}
+		});
+		mafiosoCount.setColumns(10);
+		mafiosoCount.setBounds(402, 382, 20, 28);
+		
+		setupDataPanel.add(mafiosoCount);
+		
+		// Mafia Labels
+		
+		blackmailerLabel.setForeground(new Color(128, 0, 0));
+		blackmailerLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		blackmailerLabel.setBounds(166, 496, 108, 26);
+		
+		setupDataPanel.add(blackmailerLabel);
+		consigliereLabel.setForeground(new Color(128, 0, 0));
+		consigliereLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		consigliereLabel.setBounds(166, 534, 108, 26);
+		
+		setupDataPanel.add(consigliereLabel);
+		consortLabel.setForeground(new Color(128, 0, 0));
+		consortLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		consortLabel.setBounds(166, 572, 108, 26);
+		
+		setupDataPanel.add(consortLabel);
+		disguiserLabel.setForeground(new Color(128, 0, 0));
+		disguiserLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		disguiserLabel.setBounds(166, 610, 108, 26);
+		
+		setupDataPanel.add(disguiserLabel);
+		framerLabel.setForeground(new Color(128, 0, 0));
+		framerLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		framerLabel.setBounds(166, 648, 108, 26);
+		
+		setupDataPanel.add(framerLabel);
+		godfatherLabel.setForeground(new Color(128, 0, 0));
+		godfatherLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		godfatherLabel.setBounds(166, 686, 108, 26);
+		
+		setupDataPanel.add(godfatherLabel);
+		janitorLabel.setForeground(new Color(128, 0, 0));
+		janitorLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		janitorLabel.setBounds(302, 344, 108, 26);
+		
+		setupDataPanel.add(janitorLabel);
+		mafiosoLabel.setForeground(new Color(128, 0, 0));
+		mafiosoLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
+		mafiosoLabel.setBounds(302, 382, 108, 26);
+		
+		setupDataPanel.add(mafiosoLabel);
+		
+		// Neutral Counts
+		
 		amnesiacCount.setText("0");
 		amnesiacCount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -3434,72 +3524,9 @@ public class Window {
 		werewolfCount.setBounds(402, 685, 20, 28);
 		
 		setupDataPanel.add(werewolfCount);
-		mafiosoCount.setText("0");
-		mafiosoCount.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(mafiosoCount.getText().equals("")){
-					mafiosoCount.setText("0");
-				} else if(Integer.parseInt(mafiosoCount.getText()) > 3 && maxThree){
-					mafiosoCount.setText("3");
-				}
-				Integer amount = Integer.parseInt(mafiosoCount.getText().toString());
-				enableRole(21, amount);
-			}
-		});
-		mafiosoCount.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				if(mafiosoCount.getText().equals("")){
-					mafiosoCount.setText("0");
-				} else if(Integer.parseInt(mafiosoCount.getText()) > 3 && maxThree){
-					mafiosoCount.setText("3");
-				}
-				int amount = Integer.parseInt(mafiosoCount.getText().toString());
-				enableRole(21, amount);
-			}
-		});
-		mafiosoCount.setColumns(10);
-		mafiosoCount.setBounds(402, 382, 20, 28);
 		
-		setupDataPanel.add(mafiosoCount);
-		janitorCount.setText("0");
-		janitorCount.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(janitorCount.getText().equals("")){
-					janitorCount.setText("0");
-				} else if(Integer.parseInt(janitorCount.getText()) > 3 && maxThree){
-					janitorCount.setText("3");
-				}
-				Integer amount = Integer.parseInt(janitorCount.getText().toString());
-				enableRole(20, amount);
-			}
-		});
-		janitorCount.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				if(janitorCount.getText().equals("")){
-					janitorCount.setText("0");
-				} else if(Integer.parseInt(janitorCount.getText()) > 3 && maxThree){
-					janitorCount.setText("3");
-				}
-				int amount = Integer.parseInt(janitorCount.getText().toString());
-				enableRole(20, amount);
-			}
-		});
-		janitorCount.setColumns(10);
-		janitorCount.setBounds(402, 344, 20, 28);
+		// Neutral Labels
 		
-		setupDataPanel.add(janitorCount);
-		janitorLabel.setForeground(new Color(128, 0, 0));
-		janitorLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		janitorLabel.setBounds(302, 344, 108, 26);
-		
-		setupDataPanel.add(janitorLabel);
-		mafiosoLabel.setForeground(new Color(128, 0, 0));
-		mafiosoLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
-		mafiosoLabel.setBounds(302, 382, 108, 26);
-		
-		setupDataPanel.add(mafiosoLabel);
 		amnesiacLabel.setForeground(new Color(128, 128, 128));
 		amnesiacLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
 		amnesiacLabel.setBounds(302, 421, 108, 26);
@@ -3596,7 +3623,6 @@ public class Window {
 		lblInSession.setBackground(Color.GRAY);
 		inSessionSplitPane.setLeftComponent(lblInSession);
 		
-		final JPanel inSessionDataPanel = new JPanel();
 		inSessionDataPanel.setBackground(UIManager.getColor("Button.background"));
 		inSessionDataPanel.setLayout(null);
 		inSessionDataPanel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -3634,77 +3660,18 @@ public class Window {
 		separator_9.setBounds(434, 295, 2, 23);
 		inSessionDataPanel.add(separator_9);
 		
-		JButton endGameButton = new JButton("End Game");
 		endGameButton.setForeground(new Color(139, 69, 19));
 		
 		endGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
             	Object[] options = { "End Game", "Cancel" };
             	int choice = JOptionPane.showOptionDialog(frame, "Are you sure you want to end this game session?", "Warning",
             	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
             	null, options, options[0]);
             	
             	if(choice == 0){
-					inSession = false;
-					mainTabbedPane.addTab("Main", null, mainInfoPane, null);
-					mainTabbedPane.addTab("Game Setup", null, gameSetupPane, null);
-					mainTabbedPane.setSelectedComponent(gameSetupPane);
-					mainTabbedPane.remove(inSessionPane);
-					townTable.setEnabled(true);
-					mafiaTable.setEnabled(true);
-					neutralTable.setEnabled(true);
-					
-					iconTabbedPane.setEnabled(true);
-	
-					activeRolesPanel.removeAll();
-					iconTabbedPane.remove(activeRolesPanel);
-					iconTabbedPane.addTab("Town", null, townIconPanel, null);
-					iconTabbedPane.addTab("Mafia", null, mafiaIconPanel, null);
-					iconTabbedPane.addTab("Neutral", null, neutralIconPanel, null);
-					mainViewportPanel.setBackground(dayColor);
-					inSessionPanel.setBackground(dayColor);
-					inSessionDataPanel.setBackground(dayColor);
-					headerPanel.setBackground(dayColor);
-					rolesPanel.setBackground(dayColor);
-					iconPanel.setBackground(dayColor);
-					activeRolesPanel.setBackground(dayColor);
+            		endGame(); // TODO endgame
             	}
-            	
-
-				if(!jacobIcon.isEnabled()){
-					activePlayersPanel.add(jacobIcon);
-				}
-				if(!jamieIcon.isEnabled()){
-					activePlayersPanel.add(jamieIcon);
-				}
-				if(!brettIcon.isEnabled()){
-					activePlayersPanel.add(brettIcon);
-				}
-				if(!calebIcon.isEnabled()){
-					activePlayersPanel.add(calebIcon);
-				}
-				if(!jeremyIcon.isEnabled()){
-					activePlayersPanel.add(jeremyIcon);
-				}
-				if(!dylanIcon.isEnabled()){
-					activePlayersPanel.add(dylanIcon);
-				}
-				if(!benIcon.isEnabled()){
-					activePlayersPanel.add(benIcon);
-				}
-				if(!ryanIcon.isEnabled()){
-					activePlayersPanel.add(ryanIcon);
-				}
-				
-				jacobFlag = false;
-				jamieFlag = false;
-				brettFlag = false;
-				calebFlag = false;
-				jeremyFlag = false;
-				dylanFlag = false;
-				benFlag = false;
-				ryanFlag = false;
 			}
 		});
 		endGameButton.setFont(new Font("Tempus Sans ITC", Font.BOLD, 24));
@@ -3852,38 +3819,53 @@ public class Window {
 		startGameButton.setForeground(new Color(139, 69, 19));
 		
 		startGameButton.addActionListener(new ActionListener() {
+			// Start Game Button pressed
 			public void actionPerformed(ActionEvent e) {
+				
+				// Set the mode to in-session and hide Info and Setup tabs
 				inSession = true;
 				mainTabbedPane.addTab("In session", null, inSessionPane, null);
 				mainTabbedPane.setSelectedComponent(inSessionPane);
 				mainTabbedPane.remove(mainInfoPane);
 				mainTabbedPane.remove(gameSetupPane);
+				
+				// Disable editing and selecting in the role tables
 				townTable.setEnabled(false);
 				mafiaTable.setEnabled(false);
 				neutralTable.setEnabled(false);
+				
+				// Setup display text and contextual numbers
 				nextRoleLabel.setText("Next Role:");
 				roleSequenceNumber = 0;
 				nightNumberLabel.setText("Night:");
 				nightNumber.setText("1");
 				
+				// Remove role setup panels from the icon selection pane
 				iconTabbedPane.remove(townIconPanel);
 				iconTabbedPane.remove(mafiaIconPanel);
 				iconTabbedPane.remove(neutralIconPanel);
+				
+				// If Anonymous Roles option is not selected, add the active roles panel
 				if(!anonymousRoles){
 					iconTabbedPane.addTab("Active Roles", null, activeRolesPanel, null);
 				}
+				// Clear the active roles panel of all roles
 				activeRolesPanel.removeAll();
 				
+				// Call setupSequence to repopulate the active roles panel with roles times the amount of each that must be added
 				activeRoles = setupSequence();
 				
+				// Setup the arrays of active night roles
 				tempNightRoles = activeRoles.get(0);
 				nightRoles = tempNightRoles.toArray();
 				nightRolesArray = new Object[nightRoles.length][1];
 				
 				numActiveNightRoles = nightRoles.length;
 				
+				// Initialize an empty list for dead roles				
 				deadRoles = new ArrayList<String>();
 				
+				// Create the necessary roles into the active roles panel
 				for(int i=0; i < nightRoles.length; i++){
 					nightRolesArray[i] = new Object[]{(Object)nightRoles[i]};
 					// Setup Roles
@@ -4033,14 +4015,17 @@ public class Window {
 					}
 				}
 				
+				// Define the night action sequence based on the array
 				nightActionSequence = nightRoles;
 				
+				// Setup day role arrays
 				List<String> tempDayRoles = activeRoles.get(1);
 				Object[] dayRoles = tempDayRoles.toArray();
 				Object[][] dayRolesArray = new Object[dayRoles.length][1];
 				
 				numActiveDayRoles = dayRoles.length;
 				
+				// Create the necessary roles into the active roles panel
 				for(int i=0; i < dayRoles.length; i++){
 					dayRolesArray[i] = new Object[]{(Object)dayRoles[i]};
 					// Day Roles
@@ -4055,6 +4040,8 @@ public class Window {
 						}
 					}
 				}
+				
+				// Setup the two in-session tables of active roles
 				
 				nightRolesTable.setModel(new DefaultTableModel(
 						nightRolesArray,
@@ -4097,6 +4084,7 @@ public class Window {
 					});
 				
 
+				// Setup more of the in-session text and contextual numbers
 				nextRoleLabel.setText("Day Phase:");
 				roleSequenceNumber = 0;
 				nextRoleButton.setEnabled(false);
@@ -4109,6 +4097,7 @@ public class Window {
 				nightPhaseButton.setVisible(true);
 				nightPhaseButton.setEnabled(true);
 				
+				// Remove jester from the night roles array, because a jester can only have a night action the night following the day of his death
 				if(isJester){
 					tempNightRoles.remove("Jester");
 					nightRoles = tempNightRoles.toArray();
@@ -4116,6 +4105,8 @@ public class Window {
 					numActiveNightRoles--;
 					nightActionSequence = nightRoles;
 				}
+				
+				// Enable all inactive players from the active players panel
 				
 				if(!jacobIcon.isEnabled()){
 					activePlayersPanel.remove(jacobIcon);
@@ -4149,18 +4140,23 @@ public class Window {
 		setupDataPanel.add(startGameButton);
 		
 		nextRoleButton.addActionListener(new ActionListener() {
+			// Next Role Button pressed
 			public void actionPerformed(ActionEvent arg0) {
+				// Next Role Button performs function of iterating through the night roles until it reaches the end of the list
+				// As long as the current position (active night role) is less than the length of the list, increase the sequence number and call nextRole
 				if(roleSequenceNumber < (numActiveNightRoles-1)){
-					
 					roleSequenceNumber++;
 					nextRole(nightRoleNumber, roleSequenceNumber);
 				}
+				// If the sequence number is just one short of the end of the list, increase the sequence number and prepare the session for the day phase
 				if(roleSequenceNumber == (numActiveNightRoles-1)){
 					roleSequenceNumber++;
 					nextRoleLabel.setText("End Night Phase:");
-				} else if(roleSequenceNumber >= (numActiveNightRoles)){
+				} else if(roleSequenceNumber >= (numActiveNightRoles)){ // The sequence number has surpassed the length of the list (all roles have been sequenced)
+					// Set isNight to false (day phase starts)
 					isNight = false;
-
+					
+					// If a jester was active during the night, remove that jester from any consecutive nights
 					if (jesterFlag) {
 						tempNightRoles = activeRoles.get(0);
 						Boolean jesterRemoved = tempNightRoles.remove("Jester");
@@ -4168,9 +4164,10 @@ public class Window {
 							nightRoles = tempNightRoles.toArray();
 							numActiveNightRoles--;
 						}
-						nightActionSequence = nightRoles; // TODO
+						nightActionSequence = nightRoles;
 						jesterFlag = false;
 					}
+					// Setup in-session panel for day phase
 					nextRoleLabel.setText("Day Phase:");
 					roleSequenceNumber = 0;
 					nightRoleNumber = 0;
@@ -4184,6 +4181,8 @@ public class Window {
 					nightNumberLabel.setText("Day:");
 					nightPhaseButton.setVisible(true);
 					nightPhaseButton.setEnabled(true);
+					
+					// Return to day colors
 					mainViewportPanel.setBackground(dayColor);
 					inSessionPanel.setBackground(dayColor);
 					inSessionDataPanel.setBackground(dayColor);
@@ -4197,13 +4196,12 @@ public class Window {
 		nextRoleButton.setForeground(new Color(139, 69, 19));
 		nextRoleButton.setFont(new Font("SansSerif", Font.BOLD, 36));
 		nextRoleButton.setBounds(647, 295, 90, 28);
-		//nextRoleButton.getInputMap().put(KeyStroke.getKeyStroke("SPACE"),
-        //        "pressed");
 		nextRoleButton.getInputMap(2).put(KeyStroke.getKeyStroke("SPACE"),
                 "pressed");
 		nextRoleButton.setEnabled(false);
 		inSessionDataPanel.add(nextRoleButton);
 		
+		// Setup session options
 		optionsLabel.setForeground(new Color(139, 69, 19));
 		optionsLabel.setFont(new Font("Verdana", Font.PLAIN, 18));
 		optionsLabel.setBounds(448, 295, 122, 23);
@@ -4240,14 +4238,99 @@ public class Window {
 		setupSequence();
 	}
 	
-	protected JLabel createActiveRole(final String roleName, final String iconName) { // TODO Create active role
+	// Performs the actions required to end the game session and return the state to the setup menu
+	protected void endGame() {
+		// No longer in-session
+		inSession = false;
+		
+		// Reactivate main and game setup tabs and return focus to game setup tab, remove in-session tab
+		mainTabbedPane.addTab("Main", null, mainInfoPane, null);
+		mainTabbedPane.addTab("Game Setup", null, gameSetupPane, null);
+		mainTabbedPane.setSelectedComponent(gameSetupPane);
+		mainTabbedPane.remove(inSessionPane);
+		
+		// Re-enable the roles tables for editing and selection
+		townTable.setEnabled(true);
+		mafiaTable.setEnabled(true);
+		neutralTable.setEnabled(true);
+		
+		// Re-enable the icon pane (right-hand side of window)
+		iconTabbedPane.setEnabled(true);
+		
+		// Clear active roles and remove active roles panel
+		activeRolesPanel.removeAll();
+		iconTabbedPane.remove(activeRolesPanel);
+		
+		// Add role icon pane tabs back into icon tabbed pane
+		iconTabbedPane.addTab("Town", null, townIconPanel, null);
+		iconTabbedPane.addTab("Mafia", null, mafiaIconPanel, null);
+		iconTabbedPane.addTab("Neutral", null, neutralIconPanel, null);
+		
+		// Return to day colors
+		mainViewportPanel.setBackground(dayColor);
+		inSessionPanel.setBackground(dayColor);
+		inSessionDataPanel.setBackground(dayColor);
+		headerPanel.setBackground(dayColor);
+		rolesPanel.setBackground(dayColor);
+		iconPanel.setBackground(dayColor);
+		activeRolesPanel.setBackground(dayColor);
+		
+		// Set active team counts to 0
+		activeTown = 0;
+		activeMafia = 0;
+		activeNeutral = 0;
+    	
+		// Add any missing players back into player selection panel
+		if(!jacobIcon.isEnabled()){
+			activePlayersPanel.add(jacobIcon);
+		}
+		if(!jamieIcon.isEnabled()){
+			activePlayersPanel.add(jamieIcon);
+		}
+		if(!brettIcon.isEnabled()){
+			activePlayersPanel.add(brettIcon);
+		}
+		if(!calebIcon.isEnabled()){
+			activePlayersPanel.add(calebIcon);
+		}
+		if(!jeremyIcon.isEnabled()){
+			activePlayersPanel.add(jeremyIcon);
+		}
+		if(!dylanIcon.isEnabled()){
+			activePlayersPanel.add(dylanIcon);
+		}
+		if(!benIcon.isEnabled()){
+			activePlayersPanel.add(benIcon);
+		}
+		if(!ryanIcon.isEnabled()){
+			activePlayersPanel.add(ryanIcon);
+		}
+		
+		// Reset player flags to false
+		jacobFlag = false;
+		jamieFlag = false;
+		brettFlag = false;
+		calebFlag = false;
+		jeremyFlag = false;
+		dylanFlag = false;
+		benFlag = false;
+		ryanFlag = false;
+	}
+
+	// Adds a role to the active roles panel by establishing a temporary role and setting its attributes according to the role required, assigning it to a player if necessary
+	protected JLabel createActiveRole(final String roleName, final String iconName) {
+		// New temporary role to be defined
 		final JLabel tempRole = new JLabel("");
 		tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/" + iconName + "Icon.png")));
 		tempRole.setEnabled(true);
+		
+		// Setup listeners for this new role
 		tempRole.addMouseListener(new MouseAdapter() {
 			@Override
+			// If this role is clicked, perform the following
 			public void mousePressed(MouseEvent e) {
 				if(tempRole.isEnabled() && !isNight){
+					// Setup an array of options to be giving to the player to detail the death of the role, specific to certain roles
 					Object[] options = {};
 					if(roleName.equals("Executioner")){
 		            	options = new Object[]{ "Arsonist", "Bodyguard", "Jailor", "Jester", "Mafia", "Serial Killer", "Veteran", "Vigilante", "Werewolf", "Suicide", "They were lynched!", "They didn't, their target died at night!" };
@@ -4256,10 +4339,13 @@ public class Window {
 					} else {
 						options = new Object[]{ "Arsonist", "Bodyguard", "Jailor", "Jester", "Mafia", "Serial Killer", "Veteran", "Vigilante", "Werewolf", "Suicide", "They were lynched!" };
 					}
+					
+					// Choice is an integer that will represent the selected value from above
 	            	int choice = JOptionPane.showOptionDialog(frame, "How did this role die?", "Warning",
 	            	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 	            	null, options, options[0]);
 	            	
+	            	// As long as a choice was made, perform the following based on the selected means of death
 	            	if (options != null) {
 						if (options[choice].equals("Arsonist")) {
 							//final JLabel temp = new JLabel("");
@@ -4327,12 +4413,15 @@ public class Window {
 									.getResource("/window/" + iconName
 											+ "killedByTown.png")));
 
+							// If this role was lynched and was a jester, they get to perform their night action the following night
 							if (roleName.equals("Jester")) {
 								if (!jesterFlag) {
 									jesterFlag = true;
 
 									deadRoles.add(roleName);
 									numActiveNightRoles++;
+									
+									activeTown--;
 
 									tempNightRoles.add(0, "Jester");
 									nightRoles = tempNightRoles.toArray();
@@ -4348,13 +4437,15 @@ public class Window {
 
 						}
 						if (options[choice].equals("They didn't, their target died at night!")) {
+							// If this role was an executioner and didn't die, but rather had their target killed by means other than lynching, they become a jester
 							roleAmount.put("Jester", roleAmount.get("Jester") + 1);
 							isJester = true;
 							
 							activeRoleJLabels.put("Jester", tempRole);
 
 							JLabel tempJester = createActiveRole("Jester", "jester");
-
+							
+							// If this executioner role was attached to a player, attach the new jester to that player instead
 							if(jacobAltDeath){
 								jacobAltDeath = false;
 								jacobIcon.setEnabled(true);
@@ -4404,124 +4495,579 @@ public class Window {
 								playerMap.put(ryanIcon, tempJester);
 								ryanRole = tempJester;
 							}
+							activeNeutral++;
 						}
 						if (options[choice].equals("They selected a role!")) {
-							//final JLabel temp = new JLabel("");
-							Object[] roleOptions = /*{ 
-													"Bodyguard",
-													"Doctor",
-													"Escort",
-													"Investigator",
-													"Lookout",
-													"Medium",
-													"Sheriff",
-													"Spy",
-													"Transporter",
-													"Vigilante",
-													"Blackmailer",
-													"Consigliere",
-													"Consort",
-													"Disguiser",
-													"Framer",
-													"Janitor",
-													"Arsonist",
-													"Executioner",
-													"Jester",
-													"Serial Killer",
-													"Survivor",
-													"Witch" }*/deadRoles
-									.toArray();
+							// This role was an amnesiac that has selected a role during the night
+							Object[] roleOptions = deadRoles.toArray();
 							int roleChoice = JOptionPane.showOptionDialog(
 									frame, "Which role did they become?",
 									"Warning", JOptionPane.DEFAULT_OPTION,
 									JOptionPane.WARNING_MESSAGE, null,
 									roleOptions, roleOptions[0]);
+							
+							// If the amnesiac role was attached to a player, place that player in a faux-death state so they may be reassigned the new role
+							if(jacobRoleName.equals("Amnesiac") && tempRole.equals(jacobRole)){
+								jacobAltDeath = true;
+							} else if(jamieRoleName.equals("Amnesiac") && tempRole.equals(jamieRole)){
+								jamieAltDeath = true;
+							} else if(brettRoleName.equals("Amnesiac") && tempRole.equals(brettRole)){
+								brettAltDeath = true;
+							} else if(calebRoleName.equals("Amnesiac") && tempRole.equals(calebRole)){
+								calebAltDeath = true;
+							} else if(jeremyRoleName.equals("Amnesiac") && tempRole.equals(jeremyRole)){
+								jeremyAltDeath = true;
+							} else if(dylanRoleName.equals("Amnesiac") && tempRole.equals(dylanRole)){
+								dylanAltDeath = true;
+							} else if(benRoleName.equals("Amnesiac") && tempRole.equals(benRole)){
+								benAltDeath = true;
+							} else if(ryanRoleName.equals("Amnesiac") && tempRole.equals(ryanRole)){
+								ryanAltDeath = true;
+							}
 
+							// Insert the new role into the game based on the choice made by the amnesiac
 							if (roleOptions[roleChoice].equals("Bodyguard")) {
 								insertNight("Bodyguard", "bodyguard");
+								activeTown++;
 							}
 							if (roleOptions[roleChoice].equals("Doctor")) {
 								insertNight("Doctor", "doctor");
+								activeTown++;
 							}
 							if (roleOptions[roleChoice].equals("Escort")) {
 								insertNight("Escort", "escort");
+								activeTown++;
 							}
 							if (roleOptions[roleChoice].equals("Investigator")) {
 								insertNight("Investigator", "investigator");
+								activeTown++;
 							}
 							if (roleOptions[roleChoice].equals("Lookout")) {
 								insertNight("Lookout", "lookout");
+								activeTown++;
 							}
 							if (roleOptions[roleChoice].equals("Medium")) {
 								insertNight("Medium", "medium");
+								activeTown++;
 							}
 							if (roleOptions[roleChoice].equals("Sheriff")) {
 								insertNight("Sheriff", "sheriff");
+								activeTown++;
 							}
 							if (roleOptions[roleChoice].equals("Spy")) {
 								insertNight("Spy", "spy");
+								activeTown++;
 							}
 							if (roleOptions[roleChoice].equals("Transporter")) {
 								insertNight("Transporter", "transporter");
+								activeTown++;
 							}
 							if (roleOptions[roleChoice].equals("Vigilante")) {
 								insertNight("Vigilante", "vigilante");
+								activeTown++;
 							}
 							if (roleOptions[roleChoice].equals("Blackmailer")) {
 								insertNight("Blackmailer", "blackmailer");
+								activeMafia++;
 							}
 							if (roleOptions[roleChoice].equals("Consigliere")) {
 								insertNight("Consigliere", "consigliere");
+								activeMafia++;
 							}
 							if (roleOptions[roleChoice].equals("Consort")) {
 								insertNight("Consort", "consort");
+								activeMafia++;
 							}
 							if (roleOptions[roleChoice].equals("Disguiser")) {
 								insertNight("Disguiser", "disguiser");
+								activeMafia++;
 							}
 							if (roleOptions[roleChoice].equals("Framer")) {
 								insertNight("Framer", "framer");
+								activeMafia++;
 							}
 							if (roleOptions[roleChoice].equals("Janitor")) {
 								insertNight("Janitor", "janitor");
+								activeMafia++;
 							}
 							if (roleOptions[roleChoice].equals("Arsonist")) {
 								insertNight("Arsonist", "arsonist");
+								activeNeutral++;
 							}
 							if (roleOptions[roleChoice].equals("Executioner")) {
 								insertNight("Executioner", "executioner");
+								activeNeutral++;
 							}
 							if (roleOptions[roleChoice].equals("Jester")) {
 								insertNight("Jester", "jester");
+								activeNeutral++;
 							}
 							if (roleOptions[roleChoice].equals("Serial Killer")) {
 								insertNight("Serial Killer", "serialKiller");
+								activeNeutral++;
 							}
 							if (roleOptions[roleChoice].equals("Survivor")) {
 								insertNight("Survivor", "survivor");
+								activeNeutral++;
 							}
 							if (roleOptions[roleChoice].equals("Witch")) {
 								insertNight("Witch", "witch");
+								activeNeutral++;
 							}
+							
+							// Remove the old amnesiac icon from the active roles
+							activeRolesPanel.remove(tempRole);
 						}
+						// Disable this role icon
 						tempRole.setEnabled(false);
+						
+						// If the dying role was a role without a night action, decrease the number of day roles
 						if (roleName.equals("Mayor")
 								|| roleName.equals("Executioner")) {
 							numActiveDayRoles--;
 						}
+						
+						// If the dying role was neither a Jester or role without a night action, and it was the last of its type to die
 						if (!roleName.equals("Jester")
 								&& !roleName.equals("Mayor")
 								&& !roleName.equals("Executioner")
 								&& roleAmount.get(roleName) <= 1) {
+							
+							// Assume it is the first of its kind to die
 							Boolean roleIsDead = false;
+							
+							// Check if it has already been added to the list of dead roles for an amnesiac to select from
 							for (String role : deadRoles) {
 								if (role.equals(roleName)) {
+									// If this role already exists in the list, it was not the first of its kind to die
 									roleIsDead = true;
 								}
 							}
+							// In which case, the following won't be performed
+							
+							// If the role is the first of its kind to die, add it to the dead roles list
 							if (!roleIsDead) {
 								deadRoles.add(roleName);
 							}
+							
+							// Decrease the amount of active roles left on the team corresponding to the dying role
+
+							if(roleName.equals("Bodyguard")
+									|| roleName.equals("Doctor")
+									|| roleName.equals("Escort")
+									|| roleName.equals("Investigator")
+									|| roleName.equals("Jailor")
+									|| roleName.equals("Lookout")
+									|| roleName.equals("Mayor")
+									|| roleName.equals("Medium")
+									|| roleName.equals("Retributionist")
+									|| roleName.equals("Sheriff")
+									|| roleName.equals("Spy")
+									|| roleName.equals("Transporter")
+									|| roleName.equals("Veteran")
+									|| roleName.equals("Vigilante")){
+								activeTown--;
+							} else if(roleName.equals("Blackmailer")
+									|| roleName.equals("Consigliere")
+									|| roleName.equals("Consort")
+									|| roleName.equals("Disguiser")
+									|| roleName.equals("Framer")
+									|| roleName.equals("Godfather")
+									|| roleName.equals("Janitor")
+									|| roleName.equals("Mafioso")){
+								activeMafia--;
+							} else if(roleName.equals("Amnesiac")
+									|| roleName.equals("Arsonist")
+									|| roleName.equals("Executioner")
+									|| roleName.equals("Jester")
+									|| roleName.equals("Serial Killers")
+									|| roleName.equals("Survivor")
+									|| roleName.equals("Werewolf")
+									|| roleName.equals("Witch")){
+								activeNeutral--;
+							}
+							
+							// If the dying role is a Godfather
+							Godfather:
+							if(roleName.equals("Godfather")){
+								// For every available night role, see if one of them is a Mafioso
+								for (int i = 0; i < nightRoles.length; i++) {
+									// If there is a Mafioso, promote that Mafioso to Godfather, and update any attached player
+									if (nightRoles[i].equals("Mafioso")) {
+										JLabel oldMafioso = activeRoleJLabels.get("Mafioso");
+										MouseEvent me = new MouseEvent(oldMafioso, MouseEvent.MOUSE_PRESSED, (long) 0.1, 0, 0, 0, 1, false);
+										oldMafioso.dispatchEvent(me);
+										if(jacobRoleName.equals("Mafioso")){
+											jacobAltDeath = true;
+										} else if(jamieRoleName.equals("Mafioso")){
+											jamieAltDeath = true;
+										} else if(brettRoleName.equals("Mafioso")){
+											brettAltDeath = true;
+										} else if(calebRoleName.equals("Mafioso")){
+											calebAltDeath = true;
+										} else if(jeremyRoleName.equals("Mafioso")){
+											jeremyAltDeath = true;
+										} else if(dylanRoleName.equals("Mafioso")){
+											dylanAltDeath = true;
+										} else if(benRoleName.equals("Mafioso")){
+											benAltDeath = true;
+										} else if(ryanRoleName.equals("Mafioso")){
+											ryanAltDeath = true;
+										}
+										insertNight("Godfather", "godfather");
+										break Godfather;
+									}
+								}
+								// This is reached if no Mafioso is found, now must cycle through other Mafia roles and promote on to a Mafioso
+								for (int i = 0; i < nightRoles.length; i++) {
+									// If there is no Mafioso, promote this role to Mafioso, and update any attached player
+									if (nightRoles[i].equals("Consigliere")) {
+										System.out.println("Promoting Consigliere");
+										JLabel oldMafia = activeRoleJLabels.get("Consigliere");
+										MouseEvent me = new MouseEvent(oldMafia, MouseEvent.MOUSE_PRESSED, (long) 0.1, 0, 0, 0, 1, false);
+										oldMafia.dispatchEvent(me);
+										if(jacobRoleName.equals("Consigliere")){
+											jacobAltDeath = true;
+										} else if(jamieRoleName.equals("Consigliere")){
+											jamieAltDeath = true;
+										} else if(brettRoleName.equals("Consigliere")){
+											brettAltDeath = true;
+										} else if(calebRoleName.equals("Consigliere")){
+											calebAltDeath = true;
+										} else if(jeremyRoleName.equals("Consigliere")){
+											jeremyAltDeath = true;
+										} else if(dylanRoleName.equals("Consigliere")){
+											dylanAltDeath = true;
+										} else if(benRoleName.equals("Consigliere")){
+											benAltDeath = true;
+										} else if(ryanRoleName.equals("Consigliere")){
+											ryanAltDeath = true;
+										}
+										insertNight("Mafioso", "mafioso");
+										break Godfather;
+									}
+								}
+								for (int i = 0; i < nightRoles.length; i++){
+									// If there is no Mafioso, promote this role to Mafioso, and update any attached player
+									if (nightRoles[i].equals("Blackmailer")) {
+										System.out.println("Promoting Blackmailer");
+										JLabel oldMafia = activeRoleJLabels.get("Blackmailer");
+										MouseEvent me = new MouseEvent(oldMafia, MouseEvent.MOUSE_PRESSED, (long) 0.1, 0, 0, 0, 1, false);
+										oldMafia.dispatchEvent(me);
+										if(jacobRoleName.equals("Blackmailer")){
+											jacobAltDeath = true;
+										} else if(jamieRoleName.equals("Blackmailer")){
+											jamieAltDeath = true;
+										} else if(brettRoleName.equals("Blackmailer")){
+											brettAltDeath = true;
+										} else if(calebRoleName.equals("Blackmailer")){
+											calebAltDeath = true;
+										} else if(jeremyRoleName.equals("Blackmailer")){
+											jeremyAltDeath = true;
+										} else if(dylanRoleName.equals("Blackmailer")){
+											dylanAltDeath = true;
+										} else if(benRoleName.equals("Blackmailer")){
+											benAltDeath = true;
+										} else if(ryanRoleName.equals("Blackmailer")){
+											ryanAltDeath = true;
+										}
+										insertNight("Mafioso", "mafioso");
+										break Godfather;
+									}
+								}
+								for (int i = 0; i < nightRoles.length; i++){
+									// If there is no Mafioso, promote this role to Mafioso, and update any attached player
+									if (nightRoles[i].equals("Framer")) {
+										System.out.println("Promoting Framer");
+										JLabel oldMafia = activeRoleJLabels.get("Framer");
+										MouseEvent me = new MouseEvent(oldMafia, MouseEvent.MOUSE_PRESSED, (long) 0.1, 0, 0, 0, 1, false);
+										oldMafia.dispatchEvent(me);
+										if(jacobRoleName.equals("Framer")){
+											jacobAltDeath = true;
+										} else if(jamieRoleName.equals("Framer")){
+											jamieAltDeath = true;
+										} else if(brettRoleName.equals("Framer")){
+											brettAltDeath = true;
+										} else if(calebRoleName.equals("Framer")){
+											calebAltDeath = true;
+										} else if(jeremyRoleName.equals("Framer")){
+											jeremyAltDeath = true;
+										} else if(dylanRoleName.equals("Framer")){
+											dylanAltDeath = true;
+										} else if(benRoleName.equals("Framer")){
+											benAltDeath = true;
+										} else if(ryanRoleName.equals("Framer")){
+											ryanAltDeath = true;
+										}
+										insertNight("Mafioso", "mafioso"); // TODO
+										break Godfather;
+									}
+								}
+								for (int i = 0; i < nightRoles.length; i++){
+									// If there is no Mafioso, promote this role to Mafioso, and update any attached player
+									if (nightRoles[i].equals("Janitor")) {
+										System.out.println("Promoting Janitor");
+										JLabel oldMafia = activeRoleJLabels.get("Janitor");
+										MouseEvent me = new MouseEvent(oldMafia, MouseEvent.MOUSE_PRESSED, (long) 0.1, 0, 0, 0, 1, false);
+										oldMafia.dispatchEvent(me);
+										if(jacobRoleName.equals("Janitor")){
+											jacobAltDeath = true;
+										} else if(jamieRoleName.equals("Janitor")){
+											jamieAltDeath = true;
+										} else if(brettRoleName.equals("Janitor")){
+											brettAltDeath = true;
+										} else if(calebRoleName.equals("Janitor")){
+											calebAltDeath = true;
+										} else if(jeremyRoleName.equals("Janitor")){
+											jeremyAltDeath = true;
+										} else if(dylanRoleName.equals("Janitor")){
+											dylanAltDeath = true;
+										} else if(benRoleName.equals("Janitor")){
+											benAltDeath = true;
+										} else if(ryanRoleName.equals("Janitor")){
+											ryanAltDeath = true;
+										}
+										insertNight("Mafioso", "mafioso");
+										break Godfather;
+									}
+								}
+								for (int i = 0; i < nightRoles.length; i++){
+									// If there is no Mafioso, promote this role to Mafioso, and update any attached player
+									if (nightRoles[i].equals("Disguiser")) {
+										System.out.println("Promoting Disguiser");
+										JLabel oldMafia = activeRoleJLabels.get("Disguiser");
+										MouseEvent me = new MouseEvent(oldMafia, MouseEvent.MOUSE_PRESSED, (long) 0.1, 0, 0, 0, 1, false);
+										oldMafia.dispatchEvent(me);
+										if(jacobRoleName.equals("Disguiser")){
+											jacobAltDeath = true;
+										} else if(jamieRoleName.equals("Disguiser")){
+											jamieAltDeath = true;
+										} else if(brettRoleName.equals("Disguiser")){
+											brettAltDeath = true;
+										} else if(calebRoleName.equals("Disguiser")){
+											calebAltDeath = true;
+										} else if(jeremyRoleName.equals("Disguiser")){
+											jeremyAltDeath = true;
+										} else if(dylanRoleName.equals("Disguiser")){
+											dylanAltDeath = true;
+										} else if(benRoleName.equals("Disguiser")){
+											benAltDeath = true;
+										} else if(ryanRoleName.equals("Disguiser")){
+											ryanAltDeath = true;
+										}
+										insertNight("Mafioso", "mafioso");
+										break Godfather;
+									}
+								}
+								for (int i = 0; i < nightRoles.length; i++){
+									// If there is no Mafioso, promote this role to Mafioso, and update any attached player
+									if (nightRoles[i].equals("Consort")) {
+										System.out.println("Promoting Consort");
+										JLabel oldMafia = activeRoleJLabels.get("Consort");
+										MouseEvent me = new MouseEvent(oldMafia, MouseEvent.MOUSE_PRESSED, (long) 0.1, 0, 0, 0, 1, false);
+										oldMafia.dispatchEvent(me);
+										if(jacobRoleName.equals("Consort")){
+											jacobAltDeath = true;
+										} else if(jamieRoleName.equals("Consort")){
+											jamieAltDeath = true;
+										} else if(brettRoleName.equals("Consort")){
+											brettAltDeath = true;
+										} else if(calebRoleName.equals("Consort")){
+											calebAltDeath = true;
+										} else if(jeremyRoleName.equals("Consort")){
+											jeremyAltDeath = true;
+										} else if(dylanRoleName.equals("Consort")){
+											dylanAltDeath = true;
+										} else if(benRoleName.equals("Consort")){
+											benAltDeath = true;
+										} else if(ryanRoleName.equals("Consort")){
+											ryanAltDeath = true;
+										}
+										insertNight("Mafioso", "mafioso");
+										break Godfather;
+									}
+								}
+							// Else if the dying role is a Mafioso
+							} else if(roleName.equals("Mafioso")){
+								// For every available night role, see if one of them is a Godfather
+								for (int i = 0; i < nightRoles.length; i++) {
+									// If there is a Godfather, no new role needs to be created
+									if (nightRoles[i].equals("Godfather")) {
+										System.out.println("Broke mafioso");
+										break Godfather; 
+									}
+								}
+								// This is reached if no Godfather is found, now must cycle through other Mafia roles and promote on to a Mafioso
+								for (int i = 0; i < nightRoles.length; i++) {
+									// If there is no Mafioso, promote this role to Mafioso, and update any attached player
+									if (nightRoles[i].equals("Consigliere")) {
+										System.out.println("Promoting Consigliere");
+										JLabel oldMafia = activeRoleJLabels.get("Consigliere");
+										MouseEvent me = new MouseEvent(oldMafia, MouseEvent.MOUSE_PRESSED, (long) 0.1, 0, 0, 0, 1, false);
+										oldMafia.dispatchEvent(me);
+										if(jacobRoleName.equals("Consigliere")){
+											jacobAltDeath = true;
+										} else if(jamieRoleName.equals("Consigliere")){
+											jamieAltDeath = true;
+										} else if(brettRoleName.equals("Consigliere")){
+											brettAltDeath = true;
+										} else if(calebRoleName.equals("Consigliere")){
+											calebAltDeath = true;
+										} else if(jeremyRoleName.equals("Consigliere")){
+											jeremyAltDeath = true;
+										} else if(dylanRoleName.equals("Consigliere")){
+											dylanAltDeath = true;
+										} else if(benRoleName.equals("Consigliere")){
+											benAltDeath = true;
+										} else if(ryanRoleName.equals("Consigliere")){
+											ryanAltDeath = true;
+										}
+										insertNight("Mafioso", "mafioso");
+										break Godfather;
+									}
+								}
+								for (int i = 0; i < nightRoles.length; i++){
+									// If there is no Godfather, promote this role to Mafioso, and update any attached player
+									if (nightRoles[i].equals("Blackmailer")) {
+										System.out.println("Promoting Blackmailer");
+										JLabel oldMafia = activeRoleJLabels.get("Blackmailer");
+										MouseEvent me = new MouseEvent(oldMafia, MouseEvent.MOUSE_PRESSED, (long) 0.1, 0, 0, 0, 1, false);
+										oldMafia.dispatchEvent(me);
+										if(jacobRoleName.equals("Blackmailer")){
+											jacobAltDeath = true;
+										} else if(jamieRoleName.equals("Blackmailer")){
+											jamieAltDeath = true;
+										} else if(brettRoleName.equals("Blackmailer")){
+											brettAltDeath = true;
+										} else if(calebRoleName.equals("Blackmailer")){
+											calebAltDeath = true;
+										} else if(jeremyRoleName.equals("Blackmailer")){
+											jeremyAltDeath = true;
+										} else if(dylanRoleName.equals("Blackmailer")){
+											dylanAltDeath = true;
+										} else if(benRoleName.equals("Blackmailer")){
+											benAltDeath = true;
+										} else if(ryanRoleName.equals("Blackmailer")){
+											ryanAltDeath = true;
+										}
+										insertNight("Mafioso", "mafioso");
+										break Godfather;
+									}
+								}
+								for (int i = 0; i < nightRoles.length; i++){
+									// If there is no Mafioso, promote this role to Mafioso, and update any attached player
+									if (nightRoles[i].equals("Framer")) {
+										System.out.println("Promoting Framer");
+										JLabel oldMafia = activeRoleJLabels.get("Framer");
+										MouseEvent me = new MouseEvent(oldMafia, MouseEvent.MOUSE_PRESSED, (long) 0.1, 0, 0, 0, 1, false);
+										oldMafia.dispatchEvent(me);
+										if(jacobRoleName.equals("Framer")){
+											jacobAltDeath = true;
+										} else if(jamieRoleName.equals("Framer")){
+											jamieAltDeath = true;
+										} else if(brettRoleName.equals("Framer")){
+											brettAltDeath = true;
+										} else if(calebRoleName.equals("Framer")){
+											calebAltDeath = true;
+										} else if(jeremyRoleName.equals("Framer")){
+											jeremyAltDeath = true;
+										} else if(dylanRoleName.equals("Framer")){
+											dylanAltDeath = true;
+										} else if(benRoleName.equals("Framer")){
+											benAltDeath = true;
+										} else if(ryanRoleName.equals("Framer")){
+											ryanAltDeath = true;
+										}
+										insertNight("Mafioso", "mafioso");
+										break Godfather;
+									}
+								}
+								for (int i = 0; i < nightRoles.length; i++){
+									// If there is no Mafioso, promote this role to Mafioso, and update any attached player
+									if (nightRoles[i].equals("Janitor")) {
+										System.out.println("Promoting Janitor");
+										JLabel oldMafia = activeRoleJLabels.get("Janitor");
+										MouseEvent me = new MouseEvent(oldMafia, MouseEvent.MOUSE_PRESSED, (long) 0.1, 0, 0, 0, 1, false);
+										oldMafia.dispatchEvent(me);
+										if(jacobRoleName.equals("Janitor")){
+											jacobAltDeath = true;
+										} else if(jamieRoleName.equals("Janitor")){
+											jamieAltDeath = true;
+										} else if(brettRoleName.equals("Janitor")){
+											brettAltDeath = true;
+										} else if(calebRoleName.equals("Janitor")){
+											calebAltDeath = true;
+										} else if(jeremyRoleName.equals("Janitor")){
+											jeremyAltDeath = true;
+										} else if(dylanRoleName.equals("Janitor")){
+											dylanAltDeath = true;
+										} else if(benRoleName.equals("Janitor")){
+											benAltDeath = true;
+										} else if(ryanRoleName.equals("Janitor")){
+											ryanAltDeath = true;
+										}
+										insertNight("Mafioso", "mafioso");
+										break Godfather;
+									}
+								}
+								for (int i = 0; i < nightRoles.length; i++){
+									// If there is no Mafioso, promote this role to Mafioso, and update any attached player
+									if (nightRoles[i].equals("Disguiser")) {
+										System.out.println("Promoting Disguiser");
+										JLabel oldMafia = activeRoleJLabels.get("Disguiser");
+										MouseEvent me = new MouseEvent(oldMafia, MouseEvent.MOUSE_PRESSED, (long) 0.1, 0, 0, 0, 1, false);
+										oldMafia.dispatchEvent(me);
+										if(jacobRoleName.equals("Disguiser")){
+											jacobAltDeath = true;
+										} else if(jamieRoleName.equals("Disguiser")){
+											jamieAltDeath = true;
+										} else if(brettRoleName.equals("Disguiser")){
+											brettAltDeath = true;
+										} else if(calebRoleName.equals("Disguiser")){
+											calebAltDeath = true;
+										} else if(jeremyRoleName.equals("Disguiser")){
+											jeremyAltDeath = true;
+										} else if(dylanRoleName.equals("Disguiser")){
+											dylanAltDeath = true;
+										} else if(benRoleName.equals("Disguiser")){
+											benAltDeath = true;
+										} else if(ryanRoleName.equals("Disguiser")){
+											ryanAltDeath = true;
+										}
+										insertNight("Mafioso", "mafioso");
+										break Godfather;
+									}
+								}
+								for (int i = 0; i < nightRoles.length; i++){
+									// If there is no Mafioso, promote this role to Mafioso, and update any attached player
+									if (nightRoles[i].equals("Consort")) {
+										System.out.println("Promoting Consort");
+										JLabel oldMafia = activeRoleJLabels.get("Consort");
+										MouseEvent me = new MouseEvent(oldMafia, MouseEvent.MOUSE_PRESSED, (long) 0.1, 0, 0, 0, 1, false);
+										oldMafia.dispatchEvent(me);
+										if(jacobRoleName.equals("Consort")){
+											jacobAltDeath = true;
+										} else if(jamieRoleName.equals("Consort")){
+											jamieAltDeath = true;
+										} else if(brettRoleName.equals("Consort")){
+											brettAltDeath = true;
+										} else if(calebRoleName.equals("Consort")){
+											calebAltDeath = true;
+										} else if(jeremyRoleName.equals("Consort")){
+											jeremyAltDeath = true;
+										} else if(dylanRoleName.equals("Consort")){
+											dylanAltDeath = true;
+										} else if(benRoleName.equals("Consort")){
+											benAltDeath = true;
+										} else if(ryanRoleName.equals("Consort")){
+											ryanAltDeath = true;
+										}
+										insertNight("Mafioso", "mafioso");
+										break Godfather;
+									}
+								}
+							}
+							
 							numActiveNightRoles--;
 
 							tempNightRoles.remove(roleName);
@@ -4531,20 +5077,77 @@ public class Window {
 							roleAmount.put(roleName,
 									roleAmount.get(roleName) - 1);
 						} else {
+							// Assume it is the first of its kind to die (expected to not be the case at this point)
 							Boolean roleIsDead = false;
+							
+							// Check if it has already been added to the list of dead roles for an amnesiac to select from
 							for (String role : deadRoles) {
 								if (role.equals(roleName)) {
+									// If this role already exists in the list, it was not the first of its kind to die
 									roleIsDead = true;
 								}
 							}
-							if (!roleIsDead) {
+							// In which case, the following won't be performed
+							
+							
+							if (!roleIsDead) { //TODO active role counts for win condition
 								deadRoles.add(roleName);
 							}
-							roleAmount.put(roleName,
-									roleAmount.get(roleName) - 1);
+							
+							// Decrease the amount of active roles left on the team corresponding to the dying role
+							if(roleName.equals("Bodyguard")
+									|| roleName.equals("Doctor")
+									|| roleName.equals("Escort")
+									|| roleName.equals("Investigator")
+									|| roleName.equals("Jailor")
+									|| roleName.equals("Lookout")
+									|| roleName.equals("Mayor")
+									|| roleName.equals("Medium")
+									|| roleName.equals("Retributionist")
+									|| roleName.equals("Sheriff")
+									|| roleName.equals("Spy")
+									|| roleName.equals("Transporter")
+									|| roleName.equals("Veteran")
+									|| roleName.equals("Vigilante")){
+								activeTown--;
+							} else if(roleName.equals("Blackmailer")
+									|| roleName.equals("Consigliere")
+									|| roleName.equals("Consort")
+									|| roleName.equals("Disguiser")
+									|| roleName.equals("Framer")
+									|| roleName.equals("Godfather")
+									|| roleName.equals("Janitor")
+									|| roleName.equals("Mafioso")){
+								activeMafia--;
+							} else if(roleName.equals("Amnesiac")
+									|| roleName.equals("Arsonist")
+									|| roleName.equals("Executioner")
+									|| roleName.equals("Jester")
+									|| roleName.equals("Serial Killers")
+									|| roleName.equals("Survivor")
+									|| roleName.equals("Werewolf")
+									|| roleName.equals("Witch")){
+								activeNeutral--;
+							}
+							
+							roleAmount.put(roleName, roleAmount.get(roleName) - 1);
+						}
+						System.out.println("Town: " + activeTown + "	Mafia: " + activeMafia + "	Neutral: " + activeNeutral);
+						
+						// If this role's death decreases the amount of active town members to 0, the town loses the game
+						if(activeTown <= 0){
+							Object[] loseOptions = new Object[]{ "OK" };
+							
+			            	int loseChoice = JOptionPane.showOptionDialog(frame, "The Town has lost!", "Warning",
+			            	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+			            	null, loseOptions, loseOptions[0]);
+			            	
+			            	if (loseOptions != null) {
+			            		endGame();
+			            	}
 						}
 					}
-					
+					// If the dying role is a Jester and it is disabled and the current phase is the day phase (the jester is being reactivated)
 				} else if(roleName.equals("Jester") && !tempRole.isEnabled() && !isNight){
 					tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/jesterIcon.png")));
 					tempRole.setEnabled(true);
@@ -4560,14 +5163,17 @@ public class Window {
 					} else if(roleAmount.get(roleName) < Integer.parseInt(jesterCount.getText())){
 						roleAmount.put(roleName, roleAmount.get(roleName)+1);
 					}
+					// If the dying role is any other role that is disabled and the current phase is the day phase (it is being reactivated)
 				} else if(!tempRole.isEnabled() && !isNight){
 					tempRole.setIcon(new ImageIcon(Window.class.getResource("/window/" + iconName + "Icon.png")));
 					tempRole.setEnabled(true);
+					
+					// Update all necessary night role arrays if the dying role is a role with a night action, and the only one of its kind to be alive
 					if(!roleName.equals("Mayor") && !roleName.equals("Executioner") && roleAmount.get(roleName) < 1){
 						deadRoles.remove(roleName);
 						numActiveNightRoles++;
 						
-						Integer index = 0; // TODO from here
+						Integer index = 0;
 						
 						AllNightRoles:
 						for(int i = 0; i < allNightRoles.length; i++){
@@ -4581,13 +5187,50 @@ public class Window {
 							}
 						}
 						
-						tempNightRoles.add(index, roleName); // TODO to here (changed "0" to index)
+						tempNightRoles.add(index, roleName);
 						nightRoles = tempNightRoles.toArray();
 						
 						nightActionSequence = nightRoles;
 						roleAmount.put(roleName, roleAmount.get(roleName)+1);
-					} else if(!roleName.equals("Mayor") && !roleName.equals("Executioner") && roleAmount.get(roleName) < roleCount.get(roleName)){ //Integer.parseInt(mediumCount.getText())
+						
+						// The dying role is a role with a night action, and is not the only one of its kind to be alive
+					} else if(!roleName.equals("Mayor") && !roleName.equals("Executioner") && roleAmount.get(roleName) < roleCount.get(roleName)){
 						roleAmount.put(roleName, roleAmount.get(roleName)+1);
+					}
+					
+					if(roleName.equals("Bodyguard")
+							|| roleName.equals("Doctor")
+							|| roleName.equals("Escort")
+							|| roleName.equals("Investigator")
+							|| roleName.equals("Jailor")
+							|| roleName.equals("Lookout")
+							|| roleName.equals("Mayor")
+							|| roleName.equals("Medium")
+							|| roleName.equals("Retributionist")
+							|| roleName.equals("Sheriff")
+							|| roleName.equals("Spy")
+							|| roleName.equals("Transporter")
+							|| roleName.equals("Veteran")
+							|| roleName.equals("Vigilante")){
+						activeTown++;
+					} else if(roleName.equals("Blackmailer")
+							|| roleName.equals("Consigliere")
+							|| roleName.equals("Consort")
+							|| roleName.equals("Disguiser")
+							|| roleName.equals("Framer")
+							|| roleName.equals("Godfather")
+							|| roleName.equals("Janitor")
+							|| roleName.equals("Mafioso")){
+						activeMafia++;
+					} else if(roleName.equals("Amnesiac")
+							|| roleName.equals("Arsonist")
+							|| roleName.equals("Executioner")
+							|| roleName.equals("Jester")
+							|| roleName.equals("Serial Killers")
+							|| roleName.equals("Survivor")
+							|| roleName.equals("Werewolf")
+							|| roleName.equals("Witch")){
+						activeNeutral++;
 					}
 				}
 			}
@@ -4705,46 +5348,58 @@ public class Window {
 		List<String> activeNightRoles = new ArrayList<String>();
 		List<String> activeDayRoles = new ArrayList<String>();
 		
+		activeTown = 0;
+		activeMafia = 0;
+		activeNeutral = 0;
+		
 		// Night
 		// Setup Roles
 		if(Integer.parseInt(mediumCount.getText()) > 0){
 			activeNightRoles.add("Medium");
+			activeTown += Integer.parseInt(mediumCount.getText());
 			roleAmount.put("Medium", Integer.parseInt(mediumCount.getText()));
 			roleCount.put("Medium", Integer.parseInt(mediumCount.getText()));
 		}
 		if(Integer.parseInt(amnesiacCount.getText()) > 0){
 			activeNightRoles.add("Amnesiac");
+			activeNeutral += Integer.parseInt(amnesiacCount.getText());
 			roleAmount.put("Amnesiac", Integer.parseInt(amnesiacCount.getText()));
 			roleCount.put("Amnesiac", Integer.parseInt(amnesiacCount.getText()));
 		}
 		if(Integer.parseInt(transporterCount.getText()) > 0){
 			activeNightRoles.add("Transporter");
+			activeTown += Integer.parseInt(transporterCount.getText());
 			roleAmount.put("Transporter", Integer.parseInt(transporterCount.getText()));
 			roleCount.put("Transporter", Integer.parseInt(transporterCount.getText()));
 		}
 		if(Integer.parseInt(jesterCount.getText()) > 0){
 			activeNightRoles.add("Jester");
+			activeNeutral += Integer.parseInt(jesterCount.getText());
 			roleAmount.put("Jester", Integer.parseInt(jesterCount.getText()));
 			roleCount.put("Jester", Integer.parseInt(jesterCount.getText()));
 			isJester = true;
 		}
 		if(Integer.parseInt(witchCount.getText()) > 0){
 			activeNightRoles.add("Witch");
+			activeNeutral += Integer.parseInt(witchCount.getText());
 			roleAmount.put("Witch", Integer.parseInt(witchCount.getText()));
 			roleCount.put("Witch", Integer.parseInt(witchCount.getText()));
 		}
 		if(Integer.parseInt(survivorCount.getText()) > 0){
 			activeNightRoles.add("Survivor");
+			activeNeutral += Integer.parseInt(survivorCount.getText());
 			roleAmount.put("Survivor", Integer.parseInt(survivorCount.getText()));
 			roleCount.put("Survivor", Integer.parseInt(survivorCount.getText()));
 		}
 		if(Integer.parseInt(bodyguardCount.getText()) > 0){
 			activeNightRoles.add("Bodyguard");
+			activeTown += Integer.parseInt(bodyguardCount.getText());
 			roleAmount.put("Bodyguard", Integer.parseInt(bodyguardCount.getText()));
 			roleCount.put("Bodyguard", Integer.parseInt(bodyguardCount.getText()));
 		}
 		if(Integer.parseInt(veteranCount.getText()) > 0){
 			activeNightRoles.add("Veteran");
+			activeTown += Integer.parseInt(veteranCount.getText());
 			roleAmount.put("Veteran", Integer.parseInt(veteranCount.getText()));
 			roleCount.put("Veteran", Integer.parseInt(veteranCount.getText()));
 		}
@@ -4752,6 +5407,7 @@ public class Window {
 		// Preventative Roles
 		if(Integer.parseInt(escortCount.getText()) > 0){
 			activeNightRoles.add("Escort");
+			activeTown += Integer.parseInt(escortCount.getText());
 			roleAmount.put("Escort", Integer.parseInt(escortCount.getText()));
 			roleCount.put("Escort", Integer.parseInt(escortCount.getText()));
 		}
@@ -4765,16 +5421,19 @@ public class Window {
 				roleCount.put("Mafioso", Integer.parseInt(mafiosoCount.getText()));
 			}
 			activeNightRoles.add("Consort");
+			activeMafia += Integer.parseInt(consortCount.getText());
 			roleAmount.put("Consort", Integer.parseInt(consortCount.getText()));
 			roleCount.put("Consort", Integer.parseInt(consortCount.getText()));
 		}
 		if(Integer.parseInt(doctorCount.getText()) > 0){
 			activeNightRoles.add("Doctor");
+			activeTown += Integer.parseInt(doctorCount.getText());
 			roleAmount.put("Doctor", Integer.parseInt(doctorCount.getText()));
 			roleCount.put("Doctor", Integer.parseInt(doctorCount.getText()));
 		}
 		if(Integer.parseInt(jailorCount.getText()) > 0){
 			activeNightRoles.add("Jailor");
+			activeTown += Integer.parseInt(jailorCount.getText());
 			roleAmount.put("Jailor", Integer.parseInt(jailorCount.getText()));
 			roleCount.put("Jailor", Integer.parseInt(jailorCount.getText()));
 		}
@@ -4782,6 +5441,7 @@ public class Window {
 		// Mafia Operation Roles
 		if(Integer.parseInt(godfatherCount.getText()) > 0){
 			activeNightRoles.add("Godfather");
+			activeMafia += Integer.parseInt(godfatherCount.getText());
 			roleAmount.put("Godfather", Integer.parseInt(godfatherCount.getText()));
 			roleCount.put("Godfather", Integer.parseInt(godfatherCount.getText()));
 		}
@@ -4792,6 +5452,7 @@ public class Window {
 				roleCount.put("Godfather", Integer.parseInt(godfatherCount.getText()));
 			}
 			activeNightRoles.add("Mafioso");
+			activeMafia += Integer.parseInt(mafiosoCount.getText());
 			roleAmount.put("Mafioso", Integer.parseInt(mafiosoCount.getText()));
 			roleCount.put("Mafioso", Integer.parseInt(mafiosoCount.getText()));
 		}
@@ -4805,6 +5466,7 @@ public class Window {
 				roleCount.put("Mafioso", Integer.parseInt(mafiosoCount.getText()));
 			}
 			activeNightRoles.add("Disguiser");
+			activeMafia += Integer.parseInt(disguiserCount.getText());
 			roleAmount.put("Disguiser", Integer.parseInt(disguiserCount.getText()));
 			roleCount.put("Disguiser", Integer.parseInt(disguiserCount.getText()));
 		}
@@ -4818,6 +5480,7 @@ public class Window {
 				roleCount.put("Mafioso", Integer.parseInt(mafiosoCount.getText()));
 			}
 			activeNightRoles.add("Janitor");
+			activeMafia += Integer.parseInt(janitorCount.getText());
 			roleAmount.put("Janitor", Integer.parseInt(janitorCount.getText()));
 			roleCount.put("Janitor", Integer.parseInt(janitorCount.getText()));
 		}
@@ -4831,6 +5494,7 @@ public class Window {
 				roleCount.put("Mafioso", Integer.parseInt(mafiosoCount.getText()));
 			}
 			activeNightRoles.add("Framer");
+			activeMafia += Integer.parseInt(framerCount.getText());
 			roleAmount.put("Framer", Integer.parseInt(framerCount.getText()));
 			roleCount.put("Framer", Integer.parseInt(framerCount.getText()));
 		}
@@ -4844,6 +5508,7 @@ public class Window {
 				roleCount.put("Mafioso", Integer.parseInt(mafiosoCount.getText()));
 			}
 			activeNightRoles.add("Blackmailer");
+			activeMafia += Integer.parseInt(blackmailerCount.getText());
 			roleAmount.put("Blackmailer", Integer.parseInt(blackmailerCount.getText()));
 			roleCount.put("Blackmailer", Integer.parseInt(blackmailerCount.getText()));
 		}
@@ -4857,11 +5522,13 @@ public class Window {
 				roleCount.put("Mafioso", Integer.parseInt(mafiosoCount.getText()));
 			}
 			activeNightRoles.add("Consigliere");
+			activeMafia += Integer.parseInt(consigliereCount.getText());
 			roleAmount.put("Consigliere", Integer.parseInt(consigliereCount.getText()));
 			roleCount.put("Consigliere", Integer.parseInt(consigliereCount.getText()));
 		}
 		if(Integer.parseInt(spyCount.getText()) > 0){
 			activeNightRoles.add("Spy");
+			activeTown += Integer.parseInt(spyCount.getText());
 			roleAmount.put("Spy", Integer.parseInt(spyCount.getText()));
 			roleCount.put("Spy", Integer.parseInt(spyCount.getText()));
 		}
@@ -4869,21 +5536,25 @@ public class Window {
 		// Rogue Killing Roles
 		if(Integer.parseInt(serialKillerCount.getText()) > 0){
 			activeNightRoles.add("Serial Killer");
+			activeNeutral += Integer.parseInt(serialKillerCount.getText());
 			roleAmount.put("Serial Killer", Integer.parseInt(serialKillerCount.getText()));
 			roleCount.put("Serial Killer", Integer.parseInt(serialKillerCount.getText()));
 		}
 		if(Integer.parseInt(arsonistCount.getText()) > 0){
 			activeNightRoles.add("Arsonist");
+			activeNeutral += Integer.parseInt(arsonistCount.getText());
 			roleAmount.put("Arsonist", Integer.parseInt(arsonistCount.getText()));
 			roleCount.put("Arsonist", Integer.parseInt(arsonistCount.getText()));
 		}
 		if(Integer.parseInt(vigilanteCount.getText()) > 0){
 			activeNightRoles.add("Vigilante");
+			activeTown += Integer.parseInt(vigilanteCount.getText());
 			roleAmount.put("Vigilante", Integer.parseInt(vigilanteCount.getText()));
 			roleCount.put("Vigilante", Integer.parseInt(vigilanteCount.getText()));
 		}
 		if(Integer.parseInt(werewolfCount.getText()) > 0){
 			activeNightRoles.add("Werewolf");
+			activeNeutral += Integer.parseInt(werewolfCount.getText());
 			roleAmount.put("Werewolf", Integer.parseInt(werewolfCount.getText()));
 			roleCount.put("Werewolf", Integer.parseInt(werewolfCount.getText()));
 		}
@@ -4891,21 +5562,25 @@ public class Window {
 		// Town Restorative Roles
 		if(Integer.parseInt(investigatorCount.getText()) > 0){
 			activeNightRoles.add("Investigator");
+			activeTown += Integer.parseInt(investigatorCount.getText());
 			roleAmount.put("Investigator", Integer.parseInt(investigatorCount.getText()));
 			roleCount.put("Investigator", Integer.parseInt(investigatorCount.getText()));
 		}
 		if(Integer.parseInt(sheriffCount.getText()) > 0){
 			activeNightRoles.add("Sheriff");
+			activeTown += Integer.parseInt(sheriffCount.getText());
 			roleAmount.put("Sheriff", Integer.parseInt(sheriffCount.getText()));
 			roleCount.put("Sheriff", Integer.parseInt(sheriffCount.getText()));
 		}
 		if(Integer.parseInt(retributionistCount.getText()) > 0){
 			activeNightRoles.add("Retributionist");
+			activeTown += Integer.parseInt(retributionistCount.getText());
 			roleAmount.put("Retributionist", Integer.parseInt(retributionistCount.getText()));
 			roleCount.put("Retributionist", Integer.parseInt(retributionistCount.getText()));
 		}
 		if(Integer.parseInt(lookoutCount.getText()) > 0){
 			activeNightRoles.add("Lookout");
+			activeTown += Integer.parseInt(lookoutCount.getText());
 			roleAmount.put("Lookout", Integer.parseInt(lookoutCount.getText()));
 			roleCount.put("Lookout", Integer.parseInt(lookoutCount.getText()));
 		}
@@ -4914,17 +5589,21 @@ public class Window {
 		// Day
 		if(Integer.parseInt(executionerCount.getText()) > 0){
 			activeDayRoles.add("Executioner");
+			activeNeutral += Integer.parseInt(executionerCount.getText());
 			roleAmount.put("Executioner", Integer.parseInt(executionerCount.getText()));
 			roleCount.put("Executioner", Integer.parseInt(executionerCount.getText()));
 		}
 		if(Integer.parseInt(mayorCount.getText()) > 0){
 			activeDayRoles.add("Mayor");
+			activeTown += Integer.parseInt(mayorCount.getText());
 			roleAmount.put("Mayor", Integer.parseInt(mayorCount.getText()));
 			roleCount.put("Mayor", Integer.parseInt(mayorCount.getText()));
 		}
 		
 		activeRoleLists.add(activeNightRoles);
 		activeRoleLists.add(activeDayRoles);
+
+		System.out.println("Town: " + activeTown + "	Mafia: " + activeMafia + "	Neutral: " + activeNeutral);
 		
 		return activeRoleLists;
 	}
