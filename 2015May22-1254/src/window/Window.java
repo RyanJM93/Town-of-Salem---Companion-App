@@ -202,6 +202,8 @@ public class Window {
 	Integer activeMafia = 0;
 	Integer activeNeutral = 0;
 	
+	String winText = "";
+	
 	ArrayList<String> deadRoles;
 	
 	Object[] nightActionSequence = null;
@@ -4243,6 +4245,9 @@ public class Window {
 		// No longer in-session
 		inSession = false;
 		
+		// Set win text back to default (empty)
+		winText = "";
+		
 		// Reactivate main and game setup tabs and return focus to game setup tab, remove in-session tab
 		mainTabbedPane.addTab("Main", null, mainInfoPane, null);
 		mainTabbedPane.addTab("Game Setup", null, gameSetupPane, null);
@@ -4333,7 +4338,7 @@ public class Window {
 					// Setup an array of options to be giving to the player to detail the death of the role, specific to certain roles
 					Object[] options = {};
 					if(roleName.equals("Executioner")){
-		            	options = new Object[]{ "Arsonist", "Bodyguard", "Jailor", "Jester", "Mafia", "Serial Killer", "Veteran", "Vigilante", "Werewolf", "Suicide", "They were lynched!", "They didn't, their target died at night!" };
+		            	options = new Object[]{ "Arsonist", "Bodyguard", "Jailor", "Jester", "Mafia", "Serial Killer", "Veteran", "Vigilante", "Werewolf", "Suicide", "They were lynched!", "They didn't, their target died at night!", "They killed their target!" };
 					} else if(roleName.equals("Amnesiac")){
 						options = new Object[]{ "Arsonist", "Bodyguard", "Jailor", "Jester", "Mafia", "Serial Killer", "Veteran", "Vigilante", "Werewolf", "Suicide", "They were lynched!", "They selected a role!" };
 					} else {
@@ -4497,6 +4502,54 @@ public class Window {
 							}
 							activeNeutral++;
 						}
+						if (options[choice].equals("They killed their target!")) {
+							// If this role was an executioner and didn't die, but rather managed to get their target lynched
+							// If this executioner role was attached to a player, add win text for that player
+							if(jacobAltDeath){
+								jacobAltDeath = false;
+								jacobIcon.setEnabled(true);
+								winText += "\nJacob has won.";
+								jacobRole.setEnabled(true);
+							} else if(jamieAltDeath){
+								jamieAltDeath = false;
+								jamieIcon.setEnabled(true);
+								winText += "\nJamie has won.";
+								jamieRole.setEnabled(true);
+							} else if(brettAltDeath){
+								brettAltDeath = false;
+								brettIcon.setEnabled(true);
+								winText += "\nBrett has won.";
+								brettRole.setEnabled(true);
+							} else if(calebAltDeath){
+								calebAltDeath = false;
+								calebIcon.setEnabled(true);
+								winText += "\nCaleb has won.";
+								calebRole.setEnabled(true);
+							} else if(jeremyAltDeath){
+								jeremyAltDeath = false;
+								jeremyIcon.setEnabled(true);
+								winText += "\nJeremy has won.";
+								jeremyRole.setEnabled(true);
+							} else if(dylanAltDeath){
+								dylanAltDeath = false;
+								dylanIcon.setEnabled(true);
+								winText += "\nDylan has won.";
+								dylanRole.setEnabled(true);
+							} else if(benAltDeath){
+								benAltDeath = false;
+								benIcon.setEnabled(true);
+								winText += "\nBen has won.";
+								benRole.setEnabled(true);
+							} else if(ryanAltDeath){
+								ryanAltDeath = false;
+								ryanIcon.setEnabled(true);
+								winText += "\nRyan has won.";
+								ryanRole.setEnabled(true);
+							}
+							
+							activeNeutral++;
+						}
+						
 						if (options[choice].equals("They selected a role!")) {
 							// This role was an amnesiac that has selected a role during the night
 							Object[] roleOptions = deadRoles.toArray();
@@ -5134,11 +5187,364 @@ public class Window {
 						}
 						System.out.println("Town: " + activeTown + "	Mafia: " + activeMafia + "	Neutral: " + activeNeutral);
 						
-						// If this role's death decreases the amount of active town members to 0, the town loses the game
-						if(activeTown <= 0){
+						// If this role's death fulfills a town win condition, end the game
+						if(activeTown > 0 && activeMafia <= 0 && roleAmount.get("Serial Killer") <= 0 && roleAmount.get("Arsonist") <= 0 && roleAmount.get("Werewolf") <= 0){
 							Object[] loseOptions = new Object[]{ "OK" };
 							
-			            	int loseChoice = JOptionPane.showOptionDialog(frame, "The Town has lost!", "Warning",
+							winText += "\nThe town has won.";
+							
+							// Any survivors at this point have won
+							if(jacobRoleName.equals("Survivor") && jacobIcon.isEnabled()){
+								winText += "\nJacob (Survivor) has won.";
+							}
+							if(jamieRoleName.equals("Survivor") && jamieIcon.isEnabled()){
+								winText += "\nJamie (Survivor) has won.";
+							}
+							if(brettRoleName.equals("Survivor") && brettIcon.isEnabled()){
+								winText += "\nBrett (Survivor) has won.";
+							}
+							if(calebRoleName.equals("Survivor") && calebIcon.isEnabled()){
+								winText += "\nCaleb (Survivor) has won.";
+							}
+							if(jeremyRoleName.equals("Survivor") && jeremyIcon.isEnabled()){
+								winText += "\nJeremy (Survivor) has won.";
+							}
+							if(dylanRoleName.equals("Survivor") && dylanIcon.isEnabled()){
+								winText += "\nDylan (Survivor) has won.";
+							}
+							if(benRoleName.equals("Survivor") && benIcon.isEnabled()){
+								winText += "\nBen (Survivor) has won.";
+							}
+							if(ryanRoleName.equals("Survivor") && ryanIcon.isEnabled()){
+								winText += "\nRyan (Survivor) has won.";
+							}
+							
+			            	int loseChoice = JOptionPane.showOptionDialog(frame, winText, "Warning",
+			            	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+			            	null, loseOptions, loseOptions[0]);
+			            	
+			            	if (loseOptions != null) {
+			            		endGame();
+			            	}
+		            	// If this role's death fulfills a mafia win condition, end the game
+						}else if(activeTown <= 0 && activeMafia > 0 && roleAmount.get("Serial Killer") <= 0 && roleAmount.get("Arsonist") <= 0 && roleAmount.get("Werewolf") <= 0){
+							Object[] loseOptions = new Object[]{ "OK" };
+							
+							winText += "\nThe mafia has won.";
+
+							// Any witches at this point have won
+							if(jacobRoleName.equals("Witch") && jacobIcon.isEnabled()){
+								winText += "\nJacob (Witch) has won.";
+							}
+							if(jamieRoleName.equals("Witch") && jamieIcon.isEnabled()){
+								winText += "\nJamie (Witch) has won.";
+							}
+							if(brettRoleName.equals("Witch") && brettIcon.isEnabled()){
+								winText += "\nBrett (Witch) has won.";
+							}
+							if(calebRoleName.equals("Witch") && calebIcon.isEnabled()){
+								winText += "\nCaleb (Witch) has won.";
+							}
+							if(jeremyRoleName.equals("Witch") && jeremyIcon.isEnabled()){
+								winText += "\nJeremy (Witch) has won.";
+							}
+							if(dylanRoleName.equals("Witch") && dylanIcon.isEnabled()){
+								winText += "\nDylan (Witch) has won.";
+							}
+							if(benRoleName.equals("Witch") && benIcon.isEnabled()){
+								winText += "\nBen (Witch) has won.";
+							}
+							if(ryanRoleName.equals("Witch") && ryanIcon.isEnabled()){
+								winText += "\nRyan (Witch) has won.";
+							}
+							
+							// Any survivors at this point have won
+							if(jacobRoleName.equals("Survivor") && jacobIcon.isEnabled()){
+								winText += "\nJacob (Survivor) has won.";
+							}
+							if(jamieRoleName.equals("Survivor") && jamieIcon.isEnabled()){
+								winText += "\nJamie (Survivor) has won.";
+							}
+							if(brettRoleName.equals("Survivor") && brettIcon.isEnabled()){
+								winText += "\nBrett (Survivor) has won.";
+							}
+							if(calebRoleName.equals("Survivor") && calebIcon.isEnabled()){
+								winText += "\nCaleb (Survivor) has won.";
+							}
+							if(jeremyRoleName.equals("Survivor") && jeremyIcon.isEnabled()){
+								winText += "\nJeremy (Survivor) has won.";
+							}
+							if(dylanRoleName.equals("Survivor") && dylanIcon.isEnabled()){
+								winText += "\nDylan (Survivor) has won.";
+							}
+							if(benRoleName.equals("Survivor") && benIcon.isEnabled()){
+								winText += "\nBen (Survivor) has won.";
+							}
+							if(ryanRoleName.equals("Survivor") && ryanIcon.isEnabled()){
+								winText += "\nRyan (Survivor) has won.";
+							}
+							
+			            	int loseChoice = JOptionPane.showOptionDialog(frame, winText, "Warning",
+			            	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+			            	null, loseOptions, loseOptions[0]);
+			            	
+			            	if (loseOptions != null) {
+			            		endGame();
+			            	}
+		            	// If this role's death fulfills a serial killer win condition, end the game
+						} else if(activeTown <= 0 && activeMafia <= 0 && roleAmount.get("Serial Killer") >= 1 && roleAmount.get("Arsonist") <= 0 && roleAmount.get("Werewolf") <= 0){
+							Object[] loseOptions = new Object[]{ "OK" };
+							
+							if(jacobRoleName.equals("Serial Killer") && jacobIcon.isEnabled()){
+								winText += "\nJacob (Serial Killer) has won.";
+							}
+							if(jamieRoleName.equals("Serial Killer") && jamieIcon.isEnabled()){
+								winText += "\nJamie (Serial Killer) has won.";
+							}
+							if(brettRoleName.equals("Serial Killer") && brettIcon.isEnabled()){
+								winText += "\nBrett (Serial Killer) has won.";
+							}
+							if(calebRoleName.equals("Serial Killer") && calebIcon.isEnabled()){
+								winText += "\nCaleb (Serial Killer) has won.";
+							}
+							if(jeremyRoleName.equals("Serial Killer") && jeremyIcon.isEnabled()){
+								winText += "\nJeremy (Serial Killer) has won.";
+							}
+							if(dylanRoleName.equals("Serial Killer") && dylanIcon.isEnabled()){
+								winText += "\nDylan (Serial Killer) has won.";
+							}
+							if(benRoleName.equals("Serial Killer") && benIcon.isEnabled()){
+								winText += "\nBen (Serial Killer) has won.";
+							}
+							if(ryanRoleName.equals("Serial Killer") && ryanIcon.isEnabled()){
+								winText += "\nRyan (Serial Killer) has won.";
+							}
+
+							// Any witches at this point have won
+							if(jacobRoleName.equals("Witch") && jacobIcon.isEnabled()){
+								winText += "\nJacob (Witch) has won.";
+							}
+							if(jamieRoleName.equals("Witch") && jamieIcon.isEnabled()){
+								winText += "\nJamie (Witch) has won.";
+							}
+							if(brettRoleName.equals("Witch") && brettIcon.isEnabled()){
+								winText += "\nBrett (Witch) has won.";
+							}
+							if(calebRoleName.equals("Witch") && calebIcon.isEnabled()){
+								winText += "\nCaleb (Witch) has won.";
+							}
+							if(jeremyRoleName.equals("Witch") && jeremyIcon.isEnabled()){
+								winText += "\nJeremy (Witch) has won.";
+							}
+							if(dylanRoleName.equals("Witch") && dylanIcon.isEnabled()){
+								winText += "\nDylan (Witch) has won.";
+							}
+							if(benRoleName.equals("Witch") && benIcon.isEnabled()){
+								winText += "\nBen (Witch) has won.";
+							}
+							if(ryanRoleName.equals("Witch") && ryanIcon.isEnabled()){
+								winText += "\nRyan (Witch) has won.";
+							}
+							
+							// Any survivors at this point have won
+							if(jacobRoleName.equals("Survivor") && jacobIcon.isEnabled()){
+								winText += "\nJacob (Survivor) has won.";
+							}
+							if(jamieRoleName.equals("Survivor") && jamieIcon.isEnabled()){
+								winText += "\nJamie (Survivor) has won.";
+							}
+							if(brettRoleName.equals("Survivor") && brettIcon.isEnabled()){
+								winText += "\nBrett (Survivor) has won.";
+							}
+							if(calebRoleName.equals("Survivor") && calebIcon.isEnabled()){
+								winText += "\nCaleb (Survivor) has won.";
+							}
+							if(jeremyRoleName.equals("Survivor") && jeremyIcon.isEnabled()){
+								winText += "\nJeremy (Survivor) has won.";
+							}
+							if(dylanRoleName.equals("Survivor") && dylanIcon.isEnabled()){
+								winText += "\nDylan (Survivor) has won.";
+							}
+							if(benRoleName.equals("Survivor") && benIcon.isEnabled()){
+								winText += "\nBen (Survivor) has won.";
+							}
+							if(ryanRoleName.equals("Survivor") && ryanIcon.isEnabled()){
+								winText += "\nRyan (Survivor) has won.";
+							}
+							
+			            	int loseChoice = JOptionPane.showOptionDialog(frame, winText, "Warning",
+			            	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+			            	null, loseOptions, loseOptions[0]);
+			            	
+			            	if (loseOptions != null) {
+			            		endGame();
+			            	}
+		            	// If this role's death fulfills an arsonist win condition, end the game
+						} else if(activeTown <= 0 && activeMafia <= 0 && roleAmount.get("Serial Killer") <= 0 && roleAmount.get("Arsonist") >= 1 && roleAmount.get("Werewolf") <= 0){
+							Object[] loseOptions = new Object[]{ "OK" };
+							
+							if(jacobRoleName.equals("Arsonist") && jacobIcon.isEnabled()){
+								winText += "\nJacob (Arsonist) has won.";
+							}
+							if(jamieRoleName.equals("Arsonist") && jamieIcon.isEnabled()){
+								winText += "\nJamie (Arsonist) has won.";
+							}
+							if(brettRoleName.equals("Arsonist") && brettIcon.isEnabled()){
+								winText += "\nBrett (Arsonist) has won.";
+							}
+							if(calebRoleName.equals("Arsonist") && calebIcon.isEnabled()){
+								winText += "\nCaleb (Arsonist) has won.";
+							}
+							if(jeremyRoleName.equals("Arsonist") && jeremyIcon.isEnabled()){
+								winText += "\nJeremy (Arsonist) has won.";
+							}
+							if(dylanRoleName.equals("Arsonist") && dylanIcon.isEnabled()){
+								winText += "\nDylan (Arsonist) has won.";
+							}
+							if(benRoleName.equals("Arsonist") && benIcon.isEnabled()){
+								winText += "\nBen (Arsonist) has won.";
+							}
+							if(ryanRoleName.equals("Arsonist") && ryanIcon.isEnabled()){
+								winText += "\nRyan (Arsonist) has won.";
+							}
+
+							// Any witches at this point have won
+							if(jacobRoleName.equals("Witch") && jacobIcon.isEnabled()){
+								winText += "\nJacob (Witch) has won.";
+							}
+							if(jamieRoleName.equals("Witch") && jamieIcon.isEnabled()){
+								winText += "\nJamie (Witch) has won.";
+							}
+							if(brettRoleName.equals("Witch") && brettIcon.isEnabled()){
+								winText += "\nBrett (Witch) has won.";
+							}
+							if(calebRoleName.equals("Witch") && calebIcon.isEnabled()){
+								winText += "\nCaleb (Witch) has won.";
+							}
+							if(jeremyRoleName.equals("Witch") && jeremyIcon.isEnabled()){
+								winText += "\nJeremy (Witch) has won.";
+							}
+							if(dylanRoleName.equals("Witch") && dylanIcon.isEnabled()){
+								winText += "\nDylan (Witch) has won.";
+							}
+							if(benRoleName.equals("Witch") && benIcon.isEnabled()){
+								winText += "\nBen (Witch) has won.";
+							}
+							if(ryanRoleName.equals("Witch") && ryanIcon.isEnabled()){
+								winText += "\nRyan (Witch) has won.";
+							}
+							
+							// Any survivors at this point have won
+							if(jacobRoleName.equals("Survivor") && jacobIcon.isEnabled()){
+								winText += "\nJacob (Survivor) has won.";
+							}
+							if(jamieRoleName.equals("Survivor") && jamieIcon.isEnabled()){
+								winText += "\nJamie (Survivor) has won.";
+							}
+							if(brettRoleName.equals("Survivor") && brettIcon.isEnabled()){
+								winText += "\nBrett (Survivor) has won.";
+							}
+							if(calebRoleName.equals("Survivor") && calebIcon.isEnabled()){
+								winText += "\nCaleb (Survivor) has won.";
+							}
+							if(jeremyRoleName.equals("Survivor") && jeremyIcon.isEnabled()){
+								winText += "\nJeremy (Survivor) has won.";
+							}
+							if(dylanRoleName.equals("Survivor") && dylanIcon.isEnabled()){
+								winText += "\nDylan (Survivor) has won.";
+							}
+							if(benRoleName.equals("Survivor") && benIcon.isEnabled()){
+								winText += "\nBen (Survivor) has won.";
+							}
+							if(ryanRoleName.equals("Survivor") && ryanIcon.isEnabled()){
+								winText += "\nRyan (Survivor) has won.";
+							}
+							
+			            	int loseChoice = JOptionPane.showOptionDialog(frame, winText, "Warning",
+			            	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+			            	null, loseOptions, loseOptions[0]);
+			            	
+			            	if (loseOptions != null) {
+			            		endGame();
+			            	}
+		            	// If this role's death fulfills a werewolf win condition, end the game
+						} else if(activeTown <= 0 && activeMafia <= 0 && roleAmount.get("Serial Killer") <= 0 && roleAmount.get("Arsonist") <= 0 && roleAmount.get("Werewolf") == 1){
+							Object[] loseOptions = new Object[]{ "OK" };
+
+							String winner = "";
+							if(jacobRoleName.equals("Werewolf") && jacobIcon.isEnabled()){
+								winner = "Jacob";
+							} else if(jamieRoleName.equals("Werewolf") && jamieIcon.isEnabled()){
+								winner = "Jamie";
+							} else if(brettRoleName.equals("Werewolf") && brettIcon.isEnabled()){
+								winner = "Brett";
+							} else if(calebRoleName.equals("Werewolf") && calebIcon.isEnabled()){
+								winner = "Caleb";
+							} else if(jeremyRoleName.equals("Werewolf") && jeremyIcon.isEnabled()){
+								winner = "Jeremy";
+							} else if(dylanRoleName.equals("Werewolf") && dylanIcon.isEnabled()){
+								winner = "Dylan";
+							} else if(benRoleName.equals("Werewolf") && benIcon.isEnabled()){
+								winner = "Ben";
+							} else if(ryanRoleName.equals("Werewolf") && ryanIcon.isEnabled()){
+								winner = "Ryan";
+							}
+
+							// Any witches at this point have won
+							if(jacobRoleName.equals("Witch") && jacobIcon.isEnabled()){
+								winText += "\nJacob (Witch) has won.";
+							}
+							if(jamieRoleName.equals("Witch") && jamieIcon.isEnabled()){
+								winText += "\nJamie (Witch) has won.";
+							}
+							if(brettRoleName.equals("Witch") && brettIcon.isEnabled()){
+								winText += "\nBrett (Witch) has won.";
+							}
+							if(calebRoleName.equals("Witch") && calebIcon.isEnabled()){
+								winText += "\nCaleb (Witch) has won.";
+							}
+							if(jeremyRoleName.equals("Witch") && jeremyIcon.isEnabled()){
+								winText += "\nJeremy (Witch) has won.";
+							}
+							if(dylanRoleName.equals("Witch") && dylanIcon.isEnabled()){
+								winText += "\nDylan (Witch) has won.";
+							}
+							if(benRoleName.equals("Witch") && benIcon.isEnabled()){
+								winText += "\nBen (Witch) has won.";
+							}
+							if(ryanRoleName.equals("Witch") && ryanIcon.isEnabled()){
+								winText += "\nRyan (Witch) has won.";
+							}
+							
+							// Any survivors at this point have won
+							if(jacobRoleName.equals("Survivor") && jacobIcon.isEnabled()){
+								winText += "\nJacob (Survivor) has won.";
+							}
+							if(jamieRoleName.equals("Survivor") && jamieIcon.isEnabled()){
+								winText += "\nJamie (Survivor) has won.";
+							}
+							if(brettRoleName.equals("Survivor") && brettIcon.isEnabled()){
+								winText += "\nBrett (Survivor) has won.";
+							}
+							if(calebRoleName.equals("Survivor") && calebIcon.isEnabled()){
+								winText += "\nCaleb (Survivor) has won.";
+							}
+							if(jeremyRoleName.equals("Survivor") && jeremyIcon.isEnabled()){
+								winText += "\nJeremy (Survivor) has won.";
+							}
+							if(dylanRoleName.equals("Survivor") && dylanIcon.isEnabled()){
+								winText += "\nDylan (Survivor) has won.";
+							}
+							if(benRoleName.equals("Survivor") && benIcon.isEnabled()){
+								winText += "\nBen (Survivor) has won.";
+							}
+							if(ryanRoleName.equals("Survivor") && ryanIcon.isEnabled()){
+								winText += "\nRyan (Survivor) has won.";
+							}
+							
+							winText += "\n" + winner + " (Werewolf) has won.";
+							
+			            	int loseChoice = JOptionPane.showOptionDialog(frame, winText, "Warning",
 			            	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 			            	null, loseOptions, loseOptions[0]);
 			            	
