@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Build-Jdk: 1.7.0
+Built-By: hudsonbuild
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+
+Name: epl-v10.html
+SHA1-Digest: ynF8yyZWtMKtVwAosilLElNE4Mw=
+
+Name: META-INF/maven/org.eclipse.jubula/org.eclipse.jubula.feature.lau
+ nch.java/pom.xml
+SHA1-Digest: UM74TP1AHCQNtuXIcQYJji5Satw=
+
+Name: META-INF/maven/org.eclipse.jubula/org.eclipse.jubula.feature.lau
+ nch.java/pom.properties
+SHA1-Digest: VJoOFalpnZmdwoAPzjskTLPhfkA=
+
+Name: license.html
+SHA1-Digest: Z5WKoRSIDCgQNswUpOU/oSPE2a0=
+
+Name: feature.properties
+SHA1-Digest: sad416os/7Xp+3U7nE1eWXuawsk=
+
+Name: feature.xml
+SHA1-Digest: oUOnZ2zPSdnL0VBcKXtairA/xq4=
+

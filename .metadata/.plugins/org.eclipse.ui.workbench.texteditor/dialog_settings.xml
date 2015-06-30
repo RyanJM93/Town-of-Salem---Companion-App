@@ -3,36 +3,40 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="202" key="DIALOG_Y_ORIGIN"/>
-		<item value="380" key="DIALOG_HEIGHT"/>
 		<item value="1205" key="DIALOG_X_ORIGIN"/>
+		<item value="380" key="DIALOG_HEIGHT"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="isRegEx"/>
 		<item value="true" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="roleActionIcon" key="selection"/>
+		<item value="amnesiac" key="selection"/>
 		<list key="findhistory">
-			<item value="roleActionIcon"/>
-			<item value="nextRoleButton"/>
-			<item value="System.out"/>
-			<item value="start"/>
-			<item value="icon"/>
-			<item value="roleDescriptionMap"/>
-			<item value="toArray"/>
-			<item value="toArr"/>
+			<item value="insomniac"/>
+			<item value="startGameButton"/>
+			<item value="activeRoleJLabels"/>
+			<item value="roleOptions"/>
+			<item value="dispatchEvent"/>
+			<item value="activeTown"/>
+			<item value="mainInfoPane"/>
+			<item value="iconPanel"/>
 		</list>
 		<list key="replacehistory">
-			<item value="janitorCount"/>
-			<item value="mafiosoCount"/>
-			<item value="werewolfCount"/>
-			<item value="witchCount"/>
-			<item value="survivorCount"/>
-			<item value="serialKillerCount"/>
-			<item value="jesterCount"/>
-			<item value="executionerCount"/>
+			<item value="amnesiac"/>
+			<item value="roleCount"/>
+			<item value="&quot; + iconName + &quot;"/>
+			<item value="roleOptions"/>
+			<item value="mayor"/>
+			<item value="jester"/>
+			<item value="executioner"/>
+			<item value="lookout"/>
 		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item value="334" key="DIALOG_Y_ORIGIN"/>
+		<item value="569" key="DIALOG_X_ORIGIN"/>
 	</section>
 </section>
